@@ -1,0 +1,321 @@
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  border: 2px solid transparent;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg-primary);
+  border-color: var(--accent);
+}
+
+.btn-primary:hover {
+  background: #ffa333;
+  border-color: #ffa333;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-accent);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 20px var(--accent-dim);
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--border-accent);
+  letter-spacing: 0.02em;
+}
+
+.chip-badges {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.badge-chip {
+  background: var(--bg-elevated);
+  color: var(--accent);
+  border: 1px solid var(--border-accent);
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+/* Cards */
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: all var(--transition-base);
+}
+
+.card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-dim);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: var(--accent-dim);
+  margin-bottom: var(--space-lg);
+  color: var(--accent);
+}
+
+.card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.card h3 {
+  margin-bottom: var(--space-sm);
+}
+
+/* Terminal */
+.terminal {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  width: 100%;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.75rem var(--space-md);
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.terminal-dot:nth-child(1) { background: var(--led-red); }
+.terminal-dot:nth-child(2) { background: var(--led-orange); }
+.terminal-dot:nth-child(3) { background: var(--led-green); }
+
+.terminal-title {
+  margin-left: var(--space-sm);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.terminal-body {
+  padding: var(--space-md);
+}
+
+.terminal-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 2px;
+}
+
+.terminal-line {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.terminal-line .comment {
+  color: var(--text-muted);
+}
+
+.terminal-line .result {
+  color: var(--led-green);
+}
+
+/* Reference Grid */
+.ref-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  max-width: 900px;
+  margin: var(--space-xl) auto 0;
+}
+
+.ref-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  transition: border-color var(--transition-base);
+}
+
+.ref-card:hover {
+  border-color: var(--border-accent);
+}
+
+.ref-card-name {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: var(--space-xs);
+}
+
+.ref-card p {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Specs Table */
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.specs-table th,
+.specs-table td {
+  padding: 0.85rem var(--space-md);
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.specs-table th {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  width: 200px;
+}
+
+.specs-table td {
+  color: var(--text-secondary);
+}
+
+.specs-table tr:last-child th,
+.specs-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Step Card */
+.step-card {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: flex-start;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-weight: 700;
+  font-family: var(--font-mono);
+  border: 1px solid var(--border-accent);
+}
+
+.step-card h3 {
+  margin-bottom: var(--space-xs);
+}
+
+.step-card code {
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+}
+
+/* Chat Messages */
+.chat-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.recipe-chat {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+}
+
+.chat-msg {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-sm);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.chat-msg:last-child {
+  margin-bottom: 0;
+}
+
+.chat-msg.chat-user {
+  background: var(--accent-dim);
+  color: var(--text-primary);
+  border: 1px solid var(--border-accent);
+}
+
+.chat-msg.chat-bot {
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.85rem;
+  border-left: 3px solid var(--accent);
+  padding-left: calc(var(--space-md) + 3px);
+}

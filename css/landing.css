@@ -1,0 +1,241 @@
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: var(--nav-height);
+  text-align: center;
+}
+
+.hero .container {
+  max-width: 800px;
+}
+
+.hero-text .badge {
+  margin-bottom: var(--space-lg);
+}
+
+.hero-text h1 {
+  margin-bottom: var(--space-lg);
+}
+
+.hero-text .subtitle {
+  font-size: 1.15rem;
+  margin-bottom: var(--space-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chip-badges {
+  justify-content: center;
+}
+
+/* Feature Cards */
+.features {
+  background: var(--bg-secondary);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+/* Code Showcase */
+.code-showcase {
+  text-align: center;
+}
+
+.code-showcase .terminal {
+  max-width: 620px;
+  margin: 0 auto var(--space-lg);
+  text-align: left;
+}
+
+.code-showcase .terminal-body {
+  min-height: auto;
+  max-height: none;
+}
+
+.code-label {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+/* OpenClaw Teaser */
+.openclaw-teaser {
+  padding: var(--space-3xl) 0;
+  text-align: center;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.teaser-statement {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xl);
+  letter-spacing: -0.02em;
+}
+
+.teaser-examples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 440px;
+  margin: 0 auto var(--space-xl);
+}
+
+.teaser-example {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-base);
+}
+
+.teaser-example:hover {
+  border-color: var(--border-accent);
+}
+
+.teaser-footnote {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: var(--space-xl);
+}
+
+.teaser-footnote a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition-fast);
+}
+
+.teaser-footnote a:hover {
+  color: var(--text-secondary);
+}
+
+/* Chip Table */
+.chip-table {
+  text-align: center;
+}
+
+.chip-table .specs-wrapper {
+  max-width: 650px;
+  margin: 0 auto;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Footer */
+.footer {
+  padding: var(--space-2xl) 0;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+}
+
+.footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.footer-logo img {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-xl);
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer-ecosystem {
+  width: 100%;
+  text-align: center;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border-subtle);
+  margin-top: var(--space-md);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer-ecosystem a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition-fast);
+}
+
+.footer-ecosystem a:hover {
+  color: var(--text-secondary);
+}
+
+/* GitHub CTA */
+.github-cta {
+  text-align: center;
+  padding: var(--space-4xl) 0;
+  background: var(--bg-secondary);
+}
+
+.github-cta h2 {
+  margin-bottom: var(--space-lg);
+}
+
+.github-cta .btn {
+  margin-bottom: var(--space-md);
+}
+
+.github-cta .back-link {
+  display: inline-block;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: color var(--transition-fast);
+}
+
+.github-cta .back-link:hover {
+  color: var(--accent);
+}

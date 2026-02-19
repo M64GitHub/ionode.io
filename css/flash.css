@@ -1,0 +1,151 @@
+/* Flash button */
+.btn-flash {
+  font-size: 1.15rem;
+  padding: 1rem 2.5rem;
+  box-shadow: 0 0 30px var(--accent-glow), 0 0 60px var(--accent-dim);
+  transition: all var(--transition-base);
+}
+
+.btn-flash:hover {
+  box-shadow: 0 0 40px var(--accent-glow), 0 0 80px var(--accent-dim);
+  transform: translateY(-2px);
+}
+
+.flash-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-2xl) 0;
+}
+
+.flash-version {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.flash-unsupported {
+  display: inline-block;
+  background: rgba(255, 71, 87, 0.1);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  color: var(--led-red);
+  font-size: 0.9rem;
+  max-width: 480px;
+}
+
+/* Prerequisites grid */
+.req-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.req-grid .card {
+  text-align: center;
+}
+
+.req-grid .card-icon {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Browser compat grid */
+.compat-grid {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.compat-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.compat-yes {
+  color: var(--led-green);
+}
+
+.compat-no {
+  color: var(--led-red);
+  opacity: 0.6;
+}
+
+/* Linux note */
+.linux-note {
+  max-width: 600px;
+  margin: var(--space-2xl) auto 0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--led-orange);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg) var(--space-xl);
+  text-align: left;
+}
+
+.linux-note h3 {
+  font-size: 0.95rem;
+  margin-bottom: var(--space-sm);
+}
+
+.linux-note p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.linux-note p:last-child {
+  margin-bottom: 0;
+}
+
+.linux-note-cmd {
+  display: block;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-bottom: var(--space-sm);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .req-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+
+  .compat-grid {
+    gap: var(--space-md);
+  }
+
+  .compat-item {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-flash {
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+  }
+
+  .compat-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
