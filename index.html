@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IOnode - Flash any ESP32. It speaks NATS.</title>
-  <meta name="description" content="IOnode turns any ESP32 into a NATS-addressable hardware node. GPIO, ADC, PWM, sensors, actuators — all reachable via request/reply. Flash from browser.">
+  <meta name="description" content="IOnode turns any ESP32 into a NATS-addressable hardware node. GPIO, ADC, PWM, sensors, actuators - all reachable via request/reply. Flash from browser.">
   <meta name="author" content="Mario Schallner">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ionode.io/">
   <meta property="og:title" content="IOnode - Flash any ESP32. It speaks NATS.">
-  <meta property="og:description" content="Turn any ESP32 into a NATS-addressable hardware node. GPIO, ADC, PWM, sensors, actuators — request/reply over NATS. 66ms round trip.">
+  <meta property="og:description" content="Turn any ESP32 into a NATS-addressable hardware node. GPIO, ADC, PWM, sensors, actuators - request/reply over NATS. 66ms round trip.">
   <meta property="og:site_name" content="IOnode">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="IOnode - Flash any ESP32. It speaks NATS.">
-  <meta name="twitter:description" content="Turn any ESP32 into a NATS-addressable hardware node. GPIO, ADC, PWM, sensors, actuators — request/reply over NATS.">
+  <meta name="twitter:description" content="Turn any ESP32 into a NATS-addressable hardware node. GPIO, ADC, PWM, sensors, actuators - request/reply over NATS.">
   <!-- Theme -->
   <meta name="theme-color" content="#ff8c00">
   <link rel="canonical" href="https://ionode.io/">
@@ -136,13 +136,23 @@ nats req ionode-01.hal.temperature ""      <span class="comment"># &rarr; 24.5</
 nats req ionode-01.hal.fan.set "1"         <span class="comment"># &rarr; ok</span>
 
 <span class="comment"># Raw GPIO</span>
-nats req ionode-01.hal.gpio.4.get ""       <span class="comment"># &rarr; 0</span>
-
-<span class="comment"># Discover the fleet</span>
+nats req ionode-01.hal.gpio.4.get ""       <span class="comment"># &rarr; 0</span></pre>
+        </div>
+      </div>
+      <p class="code-label reveal" style="--stagger: 2">Nodes <span class="accent">announce themselves</span>. Your network, always mapped.</p>
+      <div class="terminal reveal" style="--stagger: 3">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">autodiscovery</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin: 0; color: var(--text-secondary);"><span class="comment"># Discover the fleet</span>
 nats req _ion.discover ""                  <span class="comment"># &rarr; all nodes respond</span></pre>
         </div>
       </div>
-      <p class="code-label reveal" style="--stagger: 2">Works with any NATS client. Scripts, Node-RED, Home Assistant, OpenClaw.</p>
+      <p class="code-label reveal" style="--stagger: 4">Works with any NATS client. Scripts, Node-RED, Home Assistant, OpenClaw.</p>
     </div>
   </section>
 
