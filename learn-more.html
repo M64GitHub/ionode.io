@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn More - IOnode</title>
+  <meta name="description" content="Everything IOnode can do. The HAL protocol, device kinds, hackability, fleet management, and chip compatibility.">
+  <meta name="author" content="Mario Schallner">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ionode.io/learn-more.html">
+  <meta property="og:title" content="Learn More - IOnode">
+  <meta property="og:description" content="The HAL protocol, 14 device kinds, hackability contract, fleet management. Everything under the hood.">
+  <meta property="og:site_name" content="IOnode">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Learn More - IOnode">
+  <meta name="twitter:description" content="The HAL protocol, device kinds, hackability, fleet management. Everything IOnode can do.">
+  <!-- Theme -->
+  <meta name="theme-color" content="#ff8c00">
+  <link rel="canonical" href="https://ionode.io/learn-more.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/learn-more.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="IOnode home">
+        <img src="assets/logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>IOnode</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="learn-more.html" class="active">Learn More</a>
+        <a href="web-ui.html">Web UI</a>
+        <a href="openclaw-integration.html">OpenClaw</a>
+        <a href="flash.html">Flash</a>
+        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </nav>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="reveal">Everything IOnode can <span class="accent">do.</span></h1>
+      <p class="reveal" style="--stagger: 1">The HAL protocol, device kinds, hackability, fleet management.</p>
+    </div>
+  </section>
+
+  <!-- The HAL Protocol -->
+  <section class="architecture-deep">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>The HAL <span class="accent">Protocol</span></h2>
+        <p>Every IOnode subject lives under <code>{device}.hal.*</code> &mdash; flat, human-readable, zero config.</p>
+      </div>
+
+      <h3 class="reveal" style="text-align: center; margin-bottom: var(--space-xl);">Core HAL (always available)</h3>
+      <div class="specs-wrapper reveal" style="--stagger: 0">
+        <table class="specs-table">
+          <tbody>
+            <tr><th>{name}.hal.gpio.{pin}.get</th><td>Read pin &rarr; <code>0</code> or <code>1</code></td></tr>
+            <tr><th>{name}.hal.gpio.{pin}.set</th><td>Write pin &rarr; <code>ok</code></td></tr>
+            <tr><th>{name}.hal.adc.{pin}.read</th><td>12-bit ADC &rarr; <code>0</code>&ndash;<code>4095</code></td></tr>
+            <tr><th>{name}.hal.pwm.{pin}.set</th><td>8-bit PWM output &rarr; <code>ok</code></td></tr>
+            <tr><th>{name}.hal.pwm.{pin}.get</th><td>Last written PWM value (cached)</td></tr>
+            <tr><th>{name}.hal.uart.read</th><td>Last UART line (requires serial_text device)</td></tr>
+            <tr><th>{name}.hal.uart.write</th><td>Send text over UART &rarr; <code>ok</code></td></tr>
+            <tr><th>{name}.hal.system.temperature</th><td>Chip temp in &deg;C</td></tr>
+            <tr><th>{name}.hal.system.heap</th><td>Free heap in bytes</td></tr>
+            <tr><th>{name}.hal.system.uptime</th><td>Seconds since boot</td></tr>
+            <tr><th>{name}.hal.device.list</th><td>JSON array of all registered devices</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="reveal" style="text-align: center; margin-top: var(--space-3xl); margin-bottom: var(--space-xl);">Registered Devices</h3>
+      <div class="specs-wrapper reveal" style="--stagger: 1">
+        <table class="specs-table">
+          <tbody>
+            <tr><th>{name}.hal.{dev}</th><td>Read sensor value or actuator state</td></tr>
+            <tr><th>{name}.hal.{dev}.get</th><td>Same as above (explicit)</td></tr>
+            <tr><th>{name}.hal.{dev}.set</th><td>Set actuator value &rarr; <code>ok</code></td></tr>
+            <tr><th>{name}.hal.{dev}.info</th><td>JSON: name, kind, value, pin, unit</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="reveal" style="text-align: center; margin-top: var(--space-3xl); margin-bottom: var(--space-xl);">Discovery</h3>
+      <div class="specs-wrapper reveal" style="--stagger: 2">
+        <table class="specs-table">
+          <tbody>
+            <tr><th>_ion.discover</th><td>All nodes respond with capabilities JSON</td></tr>
+            <tr><th>{name}.capabilities</th><td>Single node capabilities</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Device Kinds -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Device <span class="accent">Kinds</span></h2>
+        <p>10 sensor types. 4 actuator types. Register in <code>devices.json</code> or via the web UI.</p>
+      </div>
+
+      <h3 class="reveal" style="text-align: center; margin-bottom: var(--space-xl);">Sensors</h3>
+      <div class="ref-grid reveal" style="--stagger: 0">
+        <div class="ref-card">
+          <div class="ref-card-name">digital_in</div>
+          <p>Digital input. Returns 0 or 1.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">analog_in</div>
+          <p>ADC input. Raw value 0&ndash;4095.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">ntc_10k</div>
+          <p>10K NTC thermistor. Steinhart-Hart, EMA-smoothed.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">ldr</div>
+          <p>Light-dependent resistor. 0&ndash;100%.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">internal_temp</div>
+          <p>On-die temperature sensor. No external hardware.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">clock_hour</div>
+          <p>Current hour (0&ndash;23). NTP-synced with timezone.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">clock_minute</div>
+          <p>Current minute (0&ndash;59).</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">clock_hhmm</div>
+          <p>Combined HHMM (e.g. 1430 = 2:30 PM).</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">nats_value</div>
+          <p>Subscribes to a NATS subject. Stores last value. No pin.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">serial_text</div>
+          <p>Reads lines from UART1. Parses numeric value.</p>
+        </div>
+      </div>
+
+      <h3 class="reveal" style="text-align: center; margin-top: var(--space-3xl); margin-bottom: var(--space-xl);">Actuators</h3>
+      <div class="ref-grid reveal" style="--stagger: 1; grid-template-columns: repeat(4, 1fr);">
+        <div class="ref-card">
+          <div class="ref-card-name">digital_out</div>
+          <p>Digital output. High or low.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">relay</div>
+          <p>Relay control. Optional inverted logic.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">pwm</div>
+          <p>PWM output. 0&ndash;255 duty cycle.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">rgb_led</div>
+          <p>Built-in RGB LED. Packed 0xRRGGBB.</p>
+        </div>
+      </div>
+
+      <div class="terminal reveal" style="--stagger: 2; max-width: 620px; margin: var(--space-3xl) auto 0;">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">devices.json</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin: 0; color: var(--text-secondary); font-size: 0.82rem;">[
+  {"n":"room_temp", "k":"ntc_10k",    "p":2,  "u":"C",  "i":false},
+  {"n":"light",     "k":"ldr",        "p":3,  "u":"%",  "i":false},
+  {"n":"door",      "k":"digital_in", "p":7,  "u":"",   "i":false},
+  {"n":"heater",    "k":"relay",      "p":8,  "u":"",   "i":true},
+  {"n":"fan",       "k":"pwm",        "p":9,  "u":"",   "i":false}
+]</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Web UI -->
+  <section class="architecture-deep">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>The Web <span class="accent">UI</span></h2>
+        <p>IOnode serves a control interface on port 80. Configure, monitor, and control from any browser.</p>
+      </div>
+      <div class="ref-grid reveal" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="ref-card">
+          <div class="ref-card-name">Config</div>
+          <p>WiFi, NATS, device name, timezone. Live devices.json editor.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">Devices</div>
+          <p>All registered devices with kind-appropriate widgets. Add/remove devices.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">Pins</div>
+          <p>Direct GPIO/ADC/PWM access. No registration needed. Quick wiring checks.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">Status</div>
+          <p>Version, uptime, heap, WiFi signal, NATS connection state.</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-xl);">
+        <a href="web-ui.html" class="arch-link reveal" style="--stagger: 1">Web UI showcase &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Built to be Hacked -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Built to be <span class="accent">Hacked</span></h2>
+        <p>Adding a sensor type is a two-step process. No NATS code. No registration boilerplate.</p>
+      </div>
+      <div class="arch-steps">
+        <div class="arch-step reveal" style="--stagger: 0">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+          </div>
+          <div>
+            <h3>1. Add the enum</h3>
+            <div class="code-block" style="margin-top: var(--space-md);">
+<pre style="margin: 0;"><span class="keyword">enum</span> DeviceKind {
+    <span class="comment">// ... existing kinds ...</span>
+    DEV_SENSOR_MY_SENSOR,      <span class="comment">// &larr; add here</span>
+};</pre>
+            </div>
+          </div>
+        </div>
+        <div class="arch-step reveal" style="--stagger: 1">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div>
+            <h3>2. Add the read case + string mapping</h3>
+            <div class="code-block" style="margin-top: var(--space-md);">
+<pre style="margin: 0;"><span class="keyword">case</span> DEV_SENSOR_MY_SENSOR: {
+    result = readMyHardware(dev->pin);
+    record_history = <span class="keyword">true</span>;
+    <span class="keyword">break</span>;
+}
+
+<span class="comment">// deviceKindName:</span>
+<span class="keyword">case</span> DEV_SENSOR_MY_SENSOR: <span class="keyword">return</span> <span class="string">"my_sensor"</span>;
+
+<span class="comment">// kindFromString:</span>
+<span class="keyword">if</span> (strcmp(s, <span class="string">"my_sensor"</span>) == 0) <span class="keyword">return</span> DEV_SENSOR_MY_SENSOR;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="terminal reveal" style="--stagger: 2; max-width: 620px; margin: var(--space-3xl) auto 0;">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">result</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin: 0; color: var(--text-secondary);">Your sensor is now:
+<span style="color: var(--accent);">&check;</span> Persisted in devices.json as {"k":"my_sensor"}
+<span style="color: var(--accent);">&check;</span> Readable via nats req ionode-01.hal.my_sensor ""
+<span style="color: var(--accent);">&check;</span> Listed in device.list and discovery responses
+<span style="color: var(--accent);">&check;</span> Background-polled for history every 5 minutes
+<span style="color: var(--accent);">&check;</span> Controllable via the web UI
+
+<span style="color: var(--text-muted);">No NATS code. The HAL router handles it.</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fleet Usage -->
+  <section class="architecture-deep">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Fleet <span class="accent">Usage</span></h2>
+        <p>Discover nodes, address them by name, script across the fleet.</p>
+      </div>
+      <div class="terminal reveal" style="max-width: 680px; margin: 0 auto;">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">fleet management</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin: 0; color: var(--text-secondary);"><span class="comment"># Discover all nodes</span>
+nats req _ion.discover "" --replies=0 --timeout=2s
+
+<span class="comment"># Read temperature from every node</span>
+<span style="color: var(--text-primary);">for</span> node <span style="color: var(--text-primary);">in</span> ionode-01 ionode-02 ionode-03; <span style="color: var(--text-primary);">do</span>
+  echo "$node: $(nats req $node.hal.system.temperature '')"
+<span style="color: var(--text-primary);">done</span>
+
+<span class="comment"># Conditional automation</span>
+TEMP=$(nats req ionode-01.hal.temperature "")
+<span style="color: var(--text-primary);">if</span> (( $(echo "$TEMP > 30" | bc -l) )); <span style="color: var(--text-primary);">then</span>
+  nats req ionode-01.hal.fan.set "1"
+<span style="color: var(--text-primary);">fi</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chip Compatibility -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Chip <span class="accent">Compatibility</span></h2>
+        <p>All targets use a 2MB partition layout. IOnode is lean &mdash; ~202KB free heap vs WireClaw&rsquo;s ~34KB.</p>
+      </div>
+      <div class="specs-wrapper reveal">
+        <table class="specs-table">
+          <tbody>
+            <tr><th>ESP32-C6</th><td>Default target &middot; USB-CDC serial &middot; RGB LED &middot; RISC-V</td></tr>
+            <tr><th>ESP32-S3</th><td>More RAM &middot; RGB LED &middot; Dual-core Xtensa</td></tr>
+            <tr><th>ESP32-C3</th><td>Smallest, cheapest &middot; RISC-V &middot; No on-die temp on some variants</td></tr>
+            <tr><th>ESP32</th><td>Classic &middot; Dual-core Xtensa &middot; No on-die temp sensor</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="specs-wrapper reveal" style="margin-top: var(--space-xl);">
+        <table class="specs-table">
+          <tbody>
+            <tr><th>Partition</th><td>app0 (1.69 MB) + spiffs (256 KB) + nvs (20 KB)</td></tr>
+            <tr><th>Free Heap</th><td>~202 KB (IOnode) vs ~34 KB (WireClaw)</td></tr>
+            <tr><th>Framework</th><td>Arduino + PlatformIO (pioarduino)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="github-cta">
+    <div class="container">
+      <h2 class="reveal">Ready to <span class="accent">flash?</span></h2>
+      <div class="hero-ctas" style="justify-content: center;">
+        <a href="flash.html" class="btn btn-primary reveal" style="--stagger: 1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Flash from Browser
+        </a>
+        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener" class="btn btn-outline reveal" style="--stagger: 2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <img src="assets/logo.svg" width="28" height="28" alt="" aria-hidden="true">
+        <span>IOnode</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="learn-more.html">Learn More</a>
+        <a href="web-ui.html">Web UI</a>
+        <a href="openclaw-integration.html">OpenClaw</a>
+        <a href="flash.html">Flash</a>
+        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <span class="footer-copy">&copy; 2026 Mario Schallner</span>
+      <div class="footer-ecosystem">Part of the WireClaw ecosystem &mdash; <a href="https://wireclaw.io" target="_blank" rel="noopener">wireclaw.io</a></div>
+    </div>
+  </footer>
+
+  <script defer src="js/nav.js"></script>
+  <script defer src="js/scroll-reveal.js"></script>
+</body>
+</html>

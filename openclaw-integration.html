@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw Integration - IOnode</title>
+  <meta name="description" content="Natural language control for your IOnode hardware fleet. OpenClaw discovers, reads, and controls every IOnode on your network.">
+  <meta name="author" content="Mario Schallner">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ionode.io/openclaw-integration.html">
+  <meta property="og:title" content="OpenClaw Integration - IOnode">
+  <meta property="og:description" content="Natural language control for your IOnode fleet. Discover devices, read sensors, control hardware — all from chat.">
+  <meta property="og:site_name" content="IOnode">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OpenClaw Integration - IOnode">
+  <meta name="twitter:description" content="Natural language control for your IOnode fleet. Discover, read, control — from chat.">
+  <!-- Theme -->
+  <meta name="theme-color" content="#ff8c00">
+  <link rel="canonical" href="https://ionode.io/openclaw-integration.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/learn-more.css">
+  <link rel="stylesheet" href="css/openclaw.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="IOnode home">
+        <img src="assets/logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>IOnode</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="learn-more.html">Learn More</a>
+        <a href="web-ui.html">Web UI</a>
+        <a href="openclaw-integration.html" class="active">OpenClaw</a>
+        <a href="flash.html">Flash</a>
+        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </nav>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="reveal">Natural language control for your <span class="accent">hardware fleet.</span></h1>
+      <p class="reveal" style="--stagger: 1">OpenClaw discovers your IOnode devices, reads sensors, controls actuators, and writes automation scripts &mdash; all from chat.</p>
+    </div>
+  </section>
+
+  <!-- What is OpenClaw -->
+  <section>
+    <div class="container">
+      <div class="insight reveal">
+        <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener" style="color: var(--accent); font-style: normal; font-weight: 600;">OpenClaw</a> is an AI agent that runs on your laptop or server and orchestrates NATS-connected devices using natural language. Install the IOnode skill and it discovers your nodes automatically.
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Demo -->
+  <section class="architecture-deep">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Live <span class="accent">Demo</span></h2>
+        <p>Real session. Unedited.</p>
+      </div>
+      <div class="recipe-chat reveal" style="max-width: 680px; margin: 0 auto; --stagger: 1">
+        <div class="chat-label">OpenClaw</div>
+        <div class="chat-msg chat-bot">Holy shit, ionode-01 is ALIVE! &#x1F389;<br>Two devices on the network:<br>&bull; wireclaw-01 &mdash; v0.4.0, 34.6KB free heap<br>&bull; ionode-01 &mdash; v0.1.0, ESP32-S3, 202KB free heap</div>
+        <div class="chat-msg chat-user">read gpio 1 from ionode-01 please</div>
+        <div class="chat-msg chat-bot">GPIO 1 on ionode-01 reads 0 (low). 158ms RTT. &#x26A1;</div>
+        <div class="chat-msg chat-user">and gpio 0?</div>
+        <div class="chat-msg chat-bot">GPIO 0 reads 1 (high). 63ms RTT.</div>
+        <div class="chat-msg chat-user">now set gpio 1 to high please!</div>
+        <div class="chat-msg chat-bot">GPIO 1 is now high. &#x26A1;</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What OpenClaw Can Do -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>What OpenClaw Can <span class="accent">Do</span></h2>
+      </div>
+      <div class="ref-grid reveal" style="grid-template-columns: repeat(4, 1fr); --stagger: 0">
+        <div class="ref-card">
+          <div class="ref-card-name">Discover</div>
+          <p>Find every IOnode on your network. Chip type, heap, sensors, HAL features.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">Read &amp; Control</div>
+          <p>Read any sensor. Set any actuator. GPIO, ADC, PWM, relays, LEDs.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">Automate</div>
+          <p>Write shell scripts using <code>ion.sh</code>. Background jobs. Persistent automation.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">Cross-Domain</div>
+          <p>CI &rarr; LED. Calendar &rarr; relay. GitHub &rarr; GPIO. Bridge any system to hardware.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Install the Skill -->
+  <section class="architecture-deep">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Install the <span class="accent">Skill</span></h2>
+        <p>Two commands. That&rsquo;s the entire integration.</p>
+      </div>
+      <div class="terminal reveal" style="max-width: 560px; margin: 0 auto; --stagger: 1">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">terminal</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin: 0; color: var(--text-secondary);">openclaw install ionode
+<span style="color: var(--text-primary);">export</span> IONODE_NATS_URL=<span style="color: var(--led-green);">"nats://192.168.1.100:4222"</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WireClaw + IOnode Together -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>WireClaw + IOnode <span class="accent">Together</span></h2>
+        <p>Both speak the <code>.hal.</code> protocol. OpenClaw addresses them identically. A mixed fleet just works.</p>
+      </div>
+      <div class="design-split reveal" style="--stagger: 1">
+        <p><span class="accent">WireClaw</span> &mdash; AI reasoning on the chip, local rules engine, self-contained</p>
+        <p><span class="accent">IOnode</span> &mdash; lean and fast, automation logic lives in OpenClaw</p>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-xl);">
+        <a href="https://wireclaw.io" target="_blank" rel="noopener" class="arch-link reveal" style="--stagger: 2">wireclaw.io &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="github-cta">
+    <div class="container">
+      <h2 class="reveal">Talk to your <span class="accent">hardware.</span></h2>
+      <p class="reveal" style="--stagger: 1; color: var(--text-secondary); margin-bottom: var(--space-xl);">Flash an IOnode. Install the skill. Control everything from chat.</p>
+      <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+        <a href="flash.html" class="btn btn-primary reveal" style="--stagger: 1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Flash Now
+        </a>
+        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener" class="btn btn-outline reveal" style="--stagger: 2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <img src="assets/logo.svg" width="28" height="28" alt="" aria-hidden="true">
+        <span>IOnode</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="learn-more.html">Learn More</a>
+        <a href="web-ui.html">Web UI</a>
+        <a href="openclaw-integration.html">OpenClaw</a>
+        <a href="flash.html">Flash</a>
+        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <span class="footer-copy">&copy; 2026 Mario Schallner</span>
+      <div class="footer-ecosystem">Part of the WireClaw ecosystem &mdash; <a href="https://wireclaw.io" target="_blank" rel="noopener">wireclaw.io</a></div>
+    </div>
+  </footer>
+
+  <script defer src="js/nav.js"></script>
+  <script defer src="js/scroll-reveal.js"></script>
+</body>
+</html>
