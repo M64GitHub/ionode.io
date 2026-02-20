@@ -341,7 +341,7 @@ TEMP=$(nats req ionode-01.hal.temperature "")
     <div class="container">
       <div class="section-header reveal">
         <h2>Chip <span class="accent">Compatibility</span></h2>
-        <p>All targets use a 2MB partition layout. IOnode is lean &mdash; ~202KB free heap vs WireClaw&rsquo;s ~34KB.</p>
+        <p>All targets use a 2MB partition layout. IOnode is lean, ~202KB free heap.</p>
       </div>
       <div class="specs-wrapper reveal">
         <table class="specs-table">
@@ -357,7 +357,7 @@ TEMP=$(nats req ionode-01.hal.temperature "")
         <table class="specs-table">
           <tbody>
             <tr><th>Partition</th><td>app0 (1.69 MB) + spiffs (256 KB) + nvs (20 KB)</td></tr>
-            <tr><th>Free Heap</th><td>~202 KB (IOnode) vs ~34 KB (WireClaw)</td></tr>
+            <tr><th>Free Heap</th><td>~202 KB</td></tr>
             <tr><th>Framework</th><td>Arduino + PlatformIO (pioarduino)</td></tr>
           </tbody>
         </table>
