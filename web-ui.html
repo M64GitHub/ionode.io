@@ -102,7 +102,7 @@ nav button{padding:0.4rem 0.6rem;font-size:0.8rem}
 <header>
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="24" height="24" rx="4" stroke="var(--accent)" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="var(--accent)"/><line x1="16" y1="4" x2="16" y2="10" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="22" x2="16" y2="28" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="16" x2="10" y2="16" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><line x1="22" y1="16" x2="28" y2="16" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/></svg>
 <h1>IOnode</h1>
-<span class="ver">v0.1.0</span>
+<span class="ver">v0.2.0</span>
 <span class="demo">Demo</span>
 </header>
 <nav>
@@ -130,6 +130,10 @@ nav button{padding:0.4rem 0.6rem;font-size:0.8rem}
 <label>Timezone</label>
 <input type="text" id="c_timezone">
 <p class="hint">POSIX TZ string, e.g. CET-1CEST,M3.5.0,M10.5.0/3</p>
+<div class="sep"></div>
+<label>Tag</label>
+<input type="text" id="c_tag" placeholder="e.g. greenhouse">
+<p class="hint">Group tag for fleet discovery via _ion.group.{tag}</p>
 <div class="actions">
 <button class="btn btn-primary" onclick="demoToast()">Save Config</button>
 <button class="btn btn-danger" onclick="demoToast()">Reboot</button>
@@ -240,7 +244,8 @@ nav button{padding:0.4rem 0.6rem;font-size:0.8rem}
 var mockConfig={
 wifi_ssid:"MyNetwork",wifi_pass:"...word",
 device_name:"ionode-01",nats_host:"192.168.1.10",
-nats_port:"4222",timezone:"CET-1CEST,M3.5.0,M10.5.0/3"
+nats_port:"4222",timezone:"CET-1CEST,M3.5.0,M10.5.0/3",
+tag:"greenhouse"
 };
 
 var mockDevicesJson=[
@@ -259,11 +264,11 @@ var mockDevicesJson=[
 ];
 
 var mockDevices=[
-{name:"chip_temp",kind:"internal_temp",pin:"virtual",value:"38.7 C",extra:"",msg:"",internal:true,raw:38.7,hist:[36.2,36.8,37.1,37.5,37.9,38.1,38.4,38.7]},
+{name:"chip_temp",kind:"internal_temp",pin:"virtual",value:"38.7 C",extra:"",msg:"",internal:true,raw:38.7,hist:[36.2,36.8,37.1,37.5,37.9,38.1,38.4,38.7],ev_direction:"above",ev_threshold:45.0,ev_cooldown:60,ev_armed:true},
 {name:"clock_hour",kind:"clock_hour",pin:"virtual",value:"14.0 h",extra:"",msg:"",internal:true,raw:14,hist:[]},
 {name:"clock_minute",kind:"clock_minute",pin:"virtual",value:"22.0 m",extra:"",msg:"",internal:true,raw:22,hist:[]},
 {name:"clock_hhmm",kind:"clock_hhmm",pin:"virtual",value:"1422.0",extra:"",msg:"",internal:true,raw:1422,hist:[]},
-{name:"temp_ext",kind:"ntc_10k",pin:"35",value:"22.5 C",extra:"",msg:"",internal:false,raw:22.5,hist:[21.8,22.0,22.1,22.3,22.4,22.5]},
+{name:"temp_ext",kind:"ntc_10k",pin:"35",value:"22.5 C",extra:"",msg:"",internal:false,raw:22.5,hist:[21.8,22.0,22.1,22.3,22.4,22.5],ev_direction:"above",ev_threshold:25.0,ev_cooldown:30,ev_armed:false},
 {name:"light",kind:"ldr",pin:"34",value:"67.2 %",extra:"",msg:"",internal:false,raw:67.2,hist:[45,52,58,63,65,67.2]},
 {name:"power",kind:"nats_value",pin:"virtual",value:"2450.0 W",extra:"home.power",msg:"Power spike detected",internal:false,raw:2450,hist:[1200,1800,2100,2300,2450]},
 {name:"gate",kind:"digital_in",pin:"4",value:"1.0",extra:"",msg:"",internal:false,raw:1,hist:[]},
@@ -274,11 +279,13 @@ var mockDevices=[
 ];
 
 var mockStatus={
-version:"0.1.0",device_name:"ionode-01",
+version:"0.2.0",device_name:"ionode-01",
 uptime:"1d 4h 37m 12s",uptime_seconds:103032,
 heap_free:245760,heap_total:327680,
 wifi_ssid:"MyNetwork",wifi_ip:"192.168.1.42",
-wifi_rssi:-48,nats:"connected"
+wifi_rssi:-48,nats:"connected",
+tag:"greenhouse",heartbeat_interval:60,
+nats_reconnects:1,events_fired:3
 };
 
 function showTab(id,btn){
@@ -303,7 +310,7 @@ toast('This is a demo \u2014 on your ESP32, this saves to flash!',true);
 
 /* Config tab */
 function loadConfig(){
-var f=['wifi_ssid','wifi_pass','device_name','nats_host','nats_port','timezone'];
+var f=['wifi_ssid','wifi_pass','device_name','nats_host','nats_port','timezone','tag'];
 f.forEach(function(k){var el=document.getElementById('c_'+k);if(el)el.value=mockConfig[k]||''});
 }
 
@@ -388,6 +395,20 @@ if(d.pin!=='virtual')h+='<div class="dev-meta">pin '+d.pin+'</div>';
 else if(d.extra)h+='<div class="dev-meta">'+d.extra+'</div>';
 h+='<div class="dev-meta">'+d.value+'</div>';
 if(d.msg)h+='<div class="dev-meta" style="color:var(--text3)">"'+d.msg+'"</div>';
+if(d.ev_direction){
+h+='<div class="dev-meta" style="color:var(--accent)">Event: '+d.ev_direction+' '+d.ev_threshold+' (intv:'+d.ev_cooldown+'s) '+(d.ev_armed?'[armed]':'[fired]')+'</div>';
+h+='<div class="toggle-wrap"><button class="toggle-btn off-active" onclick="clearEvent(\''+d.name+'\')">Clear Event</button></div>';
+}else if(d.kind!=='clock_hour'&&d.kind!=='clock_minute'&&d.kind!=='clock_hhmm'){
+h+='<div class="ev-form" style="margin-top:0.5rem;display:flex;gap:0.6rem;align-items:flex-end;flex-wrap:wrap">';
+h+='<div style="display:flex;flex-direction:column"><span style="font-size:0.6rem;color:var(--text3);margin-bottom:0.15rem">Direction</span>';
+h+='<select id="ev_d_'+d.name+'" style="width:auto;min-width:5rem;padding:0.3rem 1.8rem 0.3rem 0.5rem;font-size:0.75rem"><option value="above">above</option><option value="below">below</option></select></div>';
+h+='<div style="display:flex;flex-direction:column"><span style="font-size:0.6rem;color:var(--text3);margin-bottom:0.15rem">Threshold</span>';
+h+='<input type="number" id="ev_t_'+d.name+'" placeholder="value" style="width:5rem;padding:0.3rem 0.5rem;font-size:0.75rem" step="0.1"></div>';
+h+='<div style="display:flex;flex-direction:column"><span style="font-size:0.6rem;color:var(--text3);margin-bottom:0.15rem">Cooldown (s)</span>';
+h+='<input type="number" id="ev_cd_'+d.name+'" value="10" style="width:5rem;padding:0.3rem 0.5rem;font-size:0.75rem" min="1"></div>';
+h+='<button class="toggle-btn" onclick="setEvent(\''+d.name+'\')" style="font-size:0.75rem;padding:0.3rem 0.6rem">Set</button>';
+h+='</div>';
+}
 }
 if(d.hist&&d.hist.length>1){var mn=Math.min.apply(null,d.hist),mx=Math.max.apply(null,d.hist),rng=mx-mn||1,bars='';d.hist.forEach(function(v){var pct=Math.round(((v-mn)/rng)*100);bars+='<span class="spark-bar" style="height:'+Math.max(pct,5)+'%"></span>'});h+='<div class="spark">'+bars+'</div>'}
 h+='</div>'});
@@ -426,10 +447,41 @@ mockDevices=mockDevices.filter(function(d){return d.name!==name});
 loadDevices();
 toast('Deleted '+name,true);
 }
+function setEvent(name){
+var dir=document.getElementById('ev_d_'+name).value;
+var thr=parseFloat(document.getElementById('ev_t_'+name).value);
+var cd=parseInt(document.getElementById('ev_cd_'+name).value)||10;
+if(isNaN(thr)){toast('Threshold required',false);return}
+for(var i=0;i<mockDevices.length;i++){
+if(mockDevices[i].name===name){
+mockDevices[i].ev_direction=dir;
+mockDevices[i].ev_threshold=thr;
+mockDevices[i].ev_cooldown=cd;
+mockDevices[i].ev_armed=true;
+break;
+}
+}
+loadDevices();
+demoToast();
+}
+function clearEvent(name){
+for(var i=0;i<mockDevices.length;i++){
+if(mockDevices[i].name===name){
+delete mockDevices[i].ev_direction;
+delete mockDevices[i].ev_threshold;
+delete mockDevices[i].ev_cooldown;
+delete mockDevices[i].ev_armed;
+break;
+}
+}
+loadDevices();
+demoToast();
+}
 
 /* Status tab */
 function loadStatus(){
 var d=mockStatus;
+var hb=d.heartbeat_interval>0?'every '+d.heartbeat_interval+'s':'disabled';
 var items=[
 {l:'Version',v:d.version,cls:'accent'},
 {l:'Device',v:d.device_name},
@@ -437,7 +489,11 @@ var items=[
 {l:'Heap',v:Math.round(d.heap_free/1024)+'KB / '+Math.round(d.heap_total/1024)+'KB'},
 {l:'WiFi',v:d.wifi_ssid+' ('+d.wifi_rssi+'dBm)',full:true},
 {l:'IP Address',v:d.wifi_ip,cls:'accent'},
-{l:'NATS',v:d.nats}
+{l:'NATS',v:d.nats},
+{l:'Tag',v:d.tag||'(none)'},
+{l:'Heartbeat',v:hb},
+{l:'NATS Reconnects',v:d.nats_reconnects},
+{l:'Events Fired',v:d.events_fired}
 ];
 var h='';items.forEach(function(i){
 h+='<div class="status-item'+(i.full?' full':'')+'"><div class="label">'+i.l+
