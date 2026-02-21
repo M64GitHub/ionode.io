@@ -202,7 +202,7 @@
           <tbody>
             <tr><th>{name}.hal.gpio.{pin}.get</th><td>Read pin &rarr; <code>0</code> or <code>1</code></td></tr>
             <tr><th>{name}.hal.gpio.{pin}.set</th><td>Write pin &rarr; <code>ok</code></td></tr>
-            <tr><th>{name}.hal.adc.{pin}.read</th><td>12-bit ADC &rarr; <code>0</code>&ndash;<code>4095</code></td></tr>
+            <tr><th>{name}.hal.adc.{pin}.read</th><td>12-bit ADC &rarr; <code>0</code>-<code>4095</code></td></tr>
             <tr><th>{name}.hal.pwm.{pin}.set</th><td>8-bit PWM output &rarr; <code>ok</code></td></tr>
             <tr><th>{name}.hal.pwm.{pin}.get</th><td>Last written PWM value (cached)</td></tr>
             <tr><th>{name}.hal.uart.read</th><td>Last UART line (requires serial_text device)</td></tr>
@@ -255,7 +255,7 @@
         </div>
         <div class="ref-card">
           <div class="ref-card-name">analog_in</div>
-          <p>ADC input. Raw value 0&ndash;4095.</p>
+          <p>ADC input. Raw value 0-4095.</p>
         </div>
         <div class="ref-card">
           <div class="ref-card-name">ntc_10k</div>
@@ -263,7 +263,7 @@
         </div>
         <div class="ref-card">
           <div class="ref-card-name">ldr</div>
-          <p>Light-dependent resistor. 0&ndash;100%.</p>
+          <p>Light-dependent resistor. 0-100%.</p>
         </div>
         <div class="ref-card">
           <div class="ref-card-name">internal_temp</div>
@@ -271,11 +271,11 @@
         </div>
         <div class="ref-card">
           <div class="ref-card-name">clock_hour</div>
-          <p>Current hour (0&ndash;23). NTP-synced with timezone.</p>
+          <p>Current hour (0-23). NTP-synced with timezone.</p>
         </div>
         <div class="ref-card">
           <div class="ref-card-name">clock_minute</div>
-          <p>Current minute (0&ndash;59).</p>
+          <p>Current minute (0-59).</p>
         </div>
         <div class="ref-card">
           <div class="ref-card-name">clock_hhmm</div>
@@ -303,7 +303,7 @@
         </div>
         <div class="ref-card">
           <div class="ref-card-name">pwm</div>
-          <p>PWM output. 0&ndash;255 duty cycle.</p>
+          <p>PWM output. 0-255 duty cycle.</p>
         </div>
         <div class="ref-card">
           <div class="ref-card-name">rgb_led</div>
