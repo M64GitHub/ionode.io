@@ -61,12 +61,135 @@
   <section class="page-hero">
     <div class="container">
       <h1 class="reveal">Everything IOnode can <span class="accent">do.</span></h1>
-      <p class="reveal" style="--stagger: 1">The HAL protocol, device kinds, hackability, fleet management.</p>
+      <p class="reveal" style="--stagger: 1">From a single sensor to a fleet of 100 nodes - here's how it all works.</p>
+    </div>
+  </section>
+
+  <!-- Table of Contents -->
+  <section style="padding: var(--space-xl) 0 var(--space-2xl); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="ref-grid reveal" style="grid-template-columns: repeat(4, 1fr); max-width: 900px; margin: 0 auto;">
+        <a href="#how-it-works" class="ref-card" style="text-decoration: none; text-align: center;">
+          <div class="ref-card-name" style="font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            How It Works
+          </div>
+          <p>The big picture in 30 seconds</p>
+        </a>
+        <a href="#hal-protocol" class="ref-card" style="text-decoration: none; text-align: center;">
+          <div class="ref-card-name" style="font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+            HAL Protocol
+          </div>
+          <p>The NATS subject structure</p>
+        </a>
+        <a href="#device-kinds" class="ref-card" style="text-decoration: none; text-align: center;">
+          <div class="ref-card-name" style="font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3"/></svg>
+            Device Kinds
+          </div>
+          <p>14 sensor &amp; actuator types</p>
+        </a>
+        <a href="#hackability" class="ref-card" style="text-decoration: none; text-align: center;">
+          <div class="ref-card-name" style="font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            Built to Hack
+          </div>
+          <p>Add a sensor in 2 steps</p>
+        </a>
+      </div>
+      <div class="ref-grid reveal" style="--stagger: 1; grid-template-columns: repeat(4, 1fr); max-width: 900px; margin: var(--space-md) auto 0;">
+        <a href="#web-ui" class="ref-card" style="text-decoration: none; text-align: center;">
+          <div class="ref-card-name" style="font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Web UI
+          </div>
+          <p>On-device control panel</p>
+        </a>
+        <a href="#fleet" class="ref-card" style="text-decoration: none; text-align: center;">
+          <div class="ref-card-name" style="font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            Fleet
+          </div>
+          <p>CLI, dashboard, events</p>
+        </a>
+        <a href="#chips" class="ref-card" style="text-decoration: none; text-align: center;">
+          <div class="ref-card-name" style="font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+            Chips
+          </div>
+          <p>Supported ESP32 variants</p>
+        </a>
+        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener" class="ref-card" style="text-decoration: none; text-align: center;">
+          <div class="ref-card-name" style="font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px; margin-right: 2px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            Source
+          </div>
+          <p>GitHub repo &amp; docs</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>How It <span class="accent">Works</span></h2>
+        <p>IOnode is a firmware. Flash it onto an ESP32, and the chip becomes a node on your NATS network. Every pin, sensor, and actuator gets a unique address. Send a message, get a response. That's it.</p>
+      </div>
+      <div class="arch-steps">
+        <div class="arch-step reveal" style="--stagger: 0">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div>
+            <h3>1. Flash the firmware</h3>
+            <p style="color: var(--text-secondary);">From your <a href="flash.html" style="color: var(--accent);">browser</a> or PlatformIO. Takes 30 seconds. Works on any ESP32 - C6, S3, C3, or classic.</p>
+          </div>
+        </div>
+        <div class="arch-step reveal" style="--stagger: 1">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16"/><path d="M16 6v16"/></svg>
+          </div>
+          <div>
+            <h3>2. Connect to WiFi &amp; NATS</h3>
+            <p style="color: var(--text-secondary);">On first boot, a setup portal appears. Enter your WiFi and NATS server address. One form, done.</p>
+          </div>
+        </div>
+        <div class="arch-step reveal" style="--stagger: 2">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+          </div>
+          <div>
+            <h3>3. Your hardware is on the network</h3>
+            <p style="color: var(--text-secondary);">Every GPIO pin, ADC channel, and registered sensor gets a NATS address. Read a temperature: <code style="color: var(--accent); background: var(--accent-dim); padding: 0.1rem 0.4rem; border-radius: 3px;">ionode read ionode-01 room_temp</code></p>
+          </div>
+        </div>
+      </div>
+      <div class="terminal reveal" style="--stagger: 3; max-width: 620px; margin: var(--space-3xl) auto 0;">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">the idea</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin: 0; color: var(--text-secondary); line-height: 1.8;"><span style="color: var(--text-muted);">Every IOnode has a name. Every sensor has a name.</span>
+<span style="color: var(--text-muted);">Put them together - that's the address.</span>
+
+<span class="comment">$ ionode read ionode-01 room_temp</span>    <span style="color: var(--accent);">&rarr; 24.5</span>
+<span class="comment">$ ionode write ionode-01 fan 1</span>       <span style="color: var(--accent);">&rarr; ok</span>
+<span class="comment">$ ionode discover</span>                    <span style="color: var(--accent);">&rarr; all nodes respond</span>
+
+<span style="color: var(--text-muted);">No SDK. No cloud. No API keys. Just NATS messages.</span></pre>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- The HAL Protocol -->
-  <section class="architecture-deep">
+  <section id="hal-protocol" class="architecture-deep">
     <div class="container">
       <div class="section-header reveal">
         <h2>The HAL <span class="accent">Protocol</span></h2>
@@ -117,7 +240,7 @@
   </section>
 
   <!-- Device Kinds -->
-  <section>
+  <section id="device-kinds">
     <div class="container">
       <div class="section-header reveal">
         <h2>Device <span class="accent">Kinds</span></h2>
@@ -208,39 +331,8 @@
     </div>
   </section>
 
-  <!-- The Web UI -->
-  <section class="architecture-deep">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>The Web <span class="accent">UI</span></h2>
-        <p>IOnode serves a control interface on port 80. Configure, monitor, and control from any browser.</p>
-      </div>
-      <div class="ref-grid reveal" style="grid-template-columns: repeat(4, 1fr);">
-        <div class="ref-card">
-          <div class="ref-card-name">Config</div>
-          <p>WiFi, NATS, device name, timezone. Live devices.json editor.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">Devices</div>
-          <p>All registered devices with kind-appropriate widgets. Add/remove devices.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">Pins</div>
-          <p>Direct GPIO/ADC/PWM access. No registration needed. Quick wiring checks.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">Status</div>
-          <p>Version, uptime, heap, WiFi signal, NATS connection state.</p>
-        </div>
-      </div>
-      <div style="text-align: center; margin-top: var(--space-xl);">
-        <a href="web-ui.html" class="arch-link reveal" style="--stagger: 1">Web UI showcase &rarr;</a>
-      </div>
-    </div>
-  </section>
-
   <!-- Built to be Hacked -->
-  <section>
+  <section id="hackability">
     <div class="container">
       <div class="section-header reveal">
         <h2>Built to be <span class="accent">Hacked</span></h2>
@@ -304,8 +396,39 @@
     </div>
   </section>
 
+  <!-- The Web UI -->
+  <section id="web-ui" class="architecture-deep">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>The Web <span class="accent">UI</span></h2>
+        <p>Each IOnode serves a control interface on port 80. Configure, monitor, and control from any browser.</p>
+      </div>
+      <div class="ref-grid reveal" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="ref-card">
+          <div class="ref-card-name">Config</div>
+          <p>WiFi, NATS, device name, timezone. Live devices.json editor.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">Devices</div>
+          <p>All registered devices with kind-appropriate widgets. Add/remove devices.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">Pins</div>
+          <p>Direct GPIO/ADC/PWM access. No registration needed. Quick wiring checks.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">Status</div>
+          <p>Version, uptime, heap, WiFi signal, NATS connection state.</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-xl);">
+        <a href="web-ui.html" class="arch-link reveal" style="--stagger: 1">Web UI showcase &rarr;</a>
+      </div>
+    </div>
+  </section>
+
   <!-- Fleet Management -->
-  <section class="architecture-deep">
+  <section id="fleet" class="architecture-deep">
     <div class="container">
       <div class="section-header reveal">
         <h2>Fleet <span class="accent">Management</span></h2>
@@ -344,7 +467,7 @@
   </section>
 
   <!-- Chip Compatibility -->
-  <section>
+  <section id="chips">
     <div class="container">
       <div class="section-header reveal">
         <h2>Chip <span class="accent">Compatibility</span></h2>
