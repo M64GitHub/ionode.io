@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fleet Management - IOnode</title>
+  <meta name="description" content="IOnode Fleet Management. CLI tool, live web dashboard, threshold events, health heartbeats, tags — manage your entire ESP32 fleet from terminal or browser.">
+  <meta name="author" content="Mario Schallner">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ionode.io/fleet.html">
+  <meta property="og:title" content="Fleet Management - IOnode">
+  <meta property="og:description" content="CLI fleet tool, live web dashboard, threshold events, health heartbeats. Manage your entire ESP32 fleet.">
+  <meta property="og:site_name" content="IOnode">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Fleet Management - IOnode">
+  <meta name="twitter:description" content="CLI fleet tool, live web dashboard, threshold events, health heartbeats. Manage your entire ESP32 fleet.">
+  <meta name="theme-color" content="#ff8c00">
+  <link rel="canonical" href="https://ionode.io/fleet.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/learn-more.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .screenshot-showcase {
+      margin: var(--space-2xl) 0;
+    }
+    .screenshot-showcase img {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    }
+    .screenshot-showcase .caption {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: var(--space-sm);
+    }
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      margin: var(--space-2xl) 0;
+    }
+    @media (max-width: 768px) {
+      .screenshots-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .screenshots-grid img {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .feature-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+      margin: var(--space-xl) 0;
+    }
+    .feature-pill {
+      background: var(--accent-dim);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid var(--border-accent);
+    }
+    .cli-value { color: #e8eaf0; }
+    .cli-accent { color: #ff8c00; }
+    .cli-blue { color: #4a9eff; }
+    .cli-purple { color: #b06aff; }
+    .cli-green { color: #00d4aa; }
+    .cli-red { color: #ff4757; }
+    .cli-dim { color: #8b92a8; }
+    .cli-muted { color: #4a5068; }
+    .cli-bold { font-weight: 700; }
+    .two-terminals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      margin: var(--space-xl) 0;
+    }
+    @media (max-width: 768px) {
+      .two-terminals {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="IOnode home">
+        <img src="assets/logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>IOnode</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="learn-more.html">Learn More</a>
+        <a href="fleet.html" class="active">Fleet</a>
+        <a href="web-ui.html">Web UI</a>
+        <a href="openclaw-integration.html">OpenClaw</a>
+        <a href="flash.html">Flash</a>
+        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </nav>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Fleet <span class="accent">Management</span></h1>
+      <p>From terminal to browser. Discover, configure, and monitor your entire fleet — one command, one click.</p>
+      <div class="feature-pills">
+        <span class="feature-pill">CLI Tool</span>
+        <span class="feature-pill">Web Dashboard</span>
+        <span class="feature-pill">Tags &amp; Groups</span>
+        <span class="feature-pill">Health Heartbeats</span>
+        <span class="feature-pill">Threshold Events</span>
+        <span class="feature-pill">Remote Config</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLI Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>The <span class="accent">CLI</span></h2>
+        <p>28 commands. True color output. Instant fleet visibility.</p>
+      </div>
+
+      <!-- ionode discover -->
+      <div class="terminal reveal" style="--stagger: 1">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">ionode discover</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin:0"><span class="comment">$ ionode discover</span>
+
+<span class="cli-accent">━━</span> Fleet Discovery
+
+  <span class="cli-accent cli-bold">ionode-01</span>  <span class="cli-dim">ESP32-S3</span>
+    <span class="cli-muted">IP</span> 192.168.178.43    <span class="cli-muted">heap</span> 192 KB      <span class="cli-muted">v</span>0.2.0
+    <span class="cli-blue">chip_temp</span> <span class="cli-blue">clock_hour</span> <span class="cli-blue">clock_minute</span> <span class="cli-blue">clock_hhmm</span> <span class="cli-purple">rgb_led</span>
+
+  <span class="cli-accent cli-bold">ionode-02</span>  <span class="cli-dim">ESP32-S3</span>
+    <span class="cli-muted">IP</span> 192.168.178.44    <span class="cli-muted">heap</span> 192 KB      <span class="cli-muted">v</span>0.2.0
+    <span class="cli-blue">chip_temp</span> <span class="cli-blue">room_temp</span> <span class="cli-blue">clock_hour</span> <span class="cli-blue">clock_minute</span> <span class="cli-blue">clock_hhmm</span> <span class="cli-purple">rgb_led</span>
+
+  <span class="cli-dim">2 node(s) found</span>  <span class="cli-muted">·  nats://localhost:4222</span></pre>
+        </div>
+      </div>
+
+      <!-- Two side by side: status + adc -->
+      <div class="two-terminals">
+        <div class="terminal reveal" style="--stagger: 2">
+          <div class="terminal-header">
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-title">ionode status ionode-01</span>
+          </div>
+          <div class="terminal-body">
+<pre style="margin:0"><span class="comment">$ ionode status ionode-01</span>
+
+<span class="cli-accent">━━</span> Status  ·  ionode-01
+
+  <span class="cli-dim">Chip temp:      </span> <span class="cli-green">39.2°C</span>
+  <span class="cli-dim">Free heap:      </span> <span class="cli-green">192 KB</span>
+  <span class="cli-dim">Uptime:         </span> <span class="cli-value">36m 29s</span>
+  <span class="cli-dim">WiFi signal:    </span> <span class="cli-accent">▂▄</span><span class="cli-muted">▆█</span> <span class="cli-dim">-87dBm</span>
+  <span class="cli-dim">Last reset:     </span> <span class="cli-value">power_on</span>
+  <span class="cli-dim">NATS reconnects:</span> <span class="cli-value">2</span></pre>
+          </div>
+        </div>
+
+        <div class="terminal reveal" style="--stagger: 3">
+          <div class="terminal-header">
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-title">ionode info ionode-01</span>
+          </div>
+          <div class="terminal-body">
+<pre style="margin:0"><span class="comment">$ ionode info ionode-01</span>
+
+<span class="cli-accent">━━</span> Node Detail  ·  ionode-01
+
+  <span class="cli-dim">Firmware:       </span> IOnode v0.2.0
+  <span class="cli-dim">Chip:           </span> ESP32-S3
+  <span class="cli-dim">IP:             </span> 192.168.178.43
+  <span class="cli-dim">Free heap:      </span> <span class="cli-green">193 KB</span>
+  <span class="cli-dim">WiFi signal:    </span> <span class="cli-green">▂▄▆█</span> <span class="cli-dim">-74dBm</span>
+
+  <span class="cli-dim">HAL:</span> <span class="cli-green">gpio</span> <span class="cli-green">adc</span> <span class="cli-green">pwm</span> <span class="cli-muted">dac</span> <span class="cli-green">uart</span> <span class="cli-green">system_temp</span>
+
+  <span class="cli-dim cli-bold">Devices:</span>
+    <span class="cli-blue">chip_temp</span>    <span class="cli-muted">internal_temp</span>  39.2<span class="cli-dim">C</span>
+    <span class="cli-purple">rgb_led</span>      <span class="cli-muted">rgb_led</span>        0</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hardware access -->
+      <div class="two-terminals">
+        <div class="terminal reveal" style="--stagger: 4">
+          <div class="terminal-header">
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-title">hardware access</span>
+          </div>
+          <div class="terminal-body">
+<pre style="margin:0"><span class="comment">$ ionode read ionode-01 chip_temp</span>
+  <span class="cli-blue">chip_temp</span>  <span class="cli-accent cli-bold">38.2</span><span class="cli-dim"> C</span>
+
+<span class="comment">$ ionode adc ionode-01 2</span>
+  <span class="cli-dim">ADC 2</span>  <span class="cli-accent cli-bold">660</span>  <span class="cli-blue">███░░░░░░░░░░░░░░░░░</span>  <span class="cli-dim">16%</span>
+
+<span class="comment">$ ionode gpio ionode-01 0 get</span>
+  <span class="cli-dim">GPIO 0</span>  <span class="cli-green cli-bold">1</span>  <span class="cli-dim">(HIGH)</span></pre>
+          </div>
+        </div>
+
+        <div class="terminal reveal" style="--stagger: 5">
+          <div class="terminal-header">
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-title">fleet provisioning</span>
+          </div>
+          <div class="terminal-body">
+<pre style="margin:0"><span class="comment"># Configure 10 nodes in seconds</span>
+<span class="cli-dim">for</span> i <span class="cli-dim">in</span> $(seq 1 10); <span class="cli-dim">do</span>
+  node=<span class="cli-accent">"ionode-$(printf '%02d' $i)"</span>
+  ionode tag <span class="cli-accent">$node</span> greenhouse
+  ionode device add <span class="cli-accent">$node</span> temp ntc_10k 2 --unit C
+  ionode device add <span class="cli-accent">$node</span> fan relay 8 --inverted
+  ionode event set <span class="cli-accent">$node</span> temp --above 28
+<span class="cli-dim">done</span>
+<span class="comment"># 10 nodes. Tagged. Provisioned. Event-driven.</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <p class="code-label reveal" style="--stagger: 6; text-align: center; margin-top: var(--space-xl);">
+        <code style="color: var(--accent)">--no-color</code> · <code style="color: var(--accent)">--json</code> · <code style="color: var(--accent)">--server</code> · <code style="color: var(--accent)">NO_COLOR</code> env &mdash; works everywhere.
+      </p>
+    </div>
+  </section>
+
+  <!-- Dashboard Section -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Fleet <span class="accent">Dashboard</span></h2>
+        <p>A single HTML file. Connects to NATS via WebSocket. No backend. No build step.</p>
+      </div>
+
+      <!-- Overview screenshot -->
+      <div class="screenshot-showcase reveal" style="--stagger: 1">
+        <img src="assets/dashboard-fleet-overview.png" alt="IOnode Fleet Dashboard showing two ESP32-S3 nodes with heap, uptime, signal strength, and device tags" loading="lazy">
+        <div class="caption">Fleet overview — node cards update live from heartbeats. Sensors in blue, actuators in purple.</div>
+      </div>
+
+      <!-- Detail screenshot -->
+      <div class="screenshot-showcase reveal" style="--stagger: 2">
+        <img src="assets/dashboard-fleet-detail.png" alt="IOnode Fleet Dashboard detail panel showing system info, sensors, RGB LED color picker, and quick config" loading="lazy">
+        <div class="caption">Click a node — system health, live sensor values, actuator controls, and quick config in a slide-in panel.</div>
+      </div>
+
+      <div class="features-grid" style="margin-top: var(--space-2xl);">
+        <div class="card reveal" style="--stagger: 3">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Live Updates</h3>
+          <p>Heartbeat subscriptions keep the dashboard current. Cards flash on each heartbeat. Online/offline detection.</p>
+        </div>
+        <div class="card reveal" style="--stagger: 4">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Full Control</h3>
+          <p>Toggle relays. Drag PWM sliders. Pick RGB colors. Read sensors. All from the browser.</p>
+        </div>
+        <div class="card reveal" style="--stagger: 5">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3>Zero Setup</h3>
+          <p>Open the HTML file. Enter your NATS WebSocket URL. Done. No npm, no build, no Docker.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fleet Features -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Fleet <span class="accent">Features</span></h2>
+      </div>
+
+      <div class="arch-steps">
+        <div class="arch-step reveal" style="--stagger: 1">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          </div>
+          <div>
+            <h3>Tags &amp; Groups</h3>
+            <p>Tag nodes for fleet grouping. Query all nodes in a group with a single NATS request. Tags update live — no reboot required.</p>
+            <code style="color: var(--text-secondary); font-size: 0.85rem;">ionode tag ionode-01 greenhouse → ionode ls --tag greenhouse</code>
+          </div>
+        </div>
+
+        <div class="arch-step reveal" style="--stagger: 2">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.69 14a6.9 6.9 0 00.31-2V5l-8-3-8 3v7a6.9 6.9 0 00.31 2"/><path d="M12 22s8-4 8-10"/><path d="M12 22s-8-4-8-10"/></svg>
+          </div>
+          <div>
+            <h3>Health Heartbeats</h3>
+            <p>Nodes publish periodic health reports: heap, RSSI, uptime, reconnects, event count. Subscribe once, see everything. Dead node detection for free.</p>
+            <code style="color: var(--text-secondary); font-size: 0.85rem;">ionode watch --heartbeats</code>
+          </div>
+        </div>
+
+        <div class="arch-step reveal" style="--stagger: 3">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div>
+            <h3>Threshold Events</h3>
+            <p>Sensors fire NATS notifications when values cross a threshold. Edge-detected with configurable cooldown. Fire once, re-arm automatically.</p>
+            <code style="color: var(--text-secondary); font-size: 0.85rem;">ionode event set ionode-01 chip_temp --above 45 --cooldown 30</code>
+          </div>
+        </div>
+
+        <div class="arch-step reveal" style="--stagger: 4">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <div>
+            <h3>Remote Configuration</h3>
+            <p>Add sensors, set tags, configure events, rename nodes — all over NATS. Flash 20 blank chips, provision them from one terminal.</p>
+            <code style="color: var(--text-secondary); font-size: 0.85rem;">ionode device add ionode-01 temp ntc_10k 2 --unit C</code>
+          </div>
+        </div>
+
+        <div class="arch-step reveal" style="--stagger: 5">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2H3v16h5v4l4-4h5l4-4V2z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+          </div>
+          <div>
+            <h3>Actuator Persistence</h3>
+            <p>Relay and digital output states survive reboots. Set a relay ON, power cycle — it comes back ON. Debounced flash writes protect your hardware.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Same Protocol -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Same <span class="accent">Protocol</span></h2>
+        <p>CLI, dashboard, scripts, Node-RED, OpenClaw — they all speak the same NATS subjects. Different UI, identical wire format.</p>
+      </div>
+
+      <div class="terminal reveal" style="--stagger: 1; max-width: 700px; margin: var(--space-xl) auto 0;">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">same subjects everywhere</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin:0"><span class="comment"># CLI</span>
+ionode read ionode-01 chip_temp
+
+<span class="comment"># Raw NATS</span>
+nats req ionode-01.hal.chip_temp ""
+
+<span class="comment"># Dashboard (JavaScript)</span>
+nc.request('ionode-01.hal.chip_temp', '')
+
+<span class="comment"># Python</span>
+await nc.request('ionode-01.hal.chip_temp', b'')
+
+<span class="comment"># All return: 38.2</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="github-cta">
+    <div class="container">
+      <h2 class="reveal">Ready to manage your <span class="accent">fleet?</span></h2>
+      <p class="reveal" style="color: var(--text-secondary); margin-bottom: var(--space-xl);">Flash a few nodes, install the CLI, open the dashboard.</p>
+      <div class="hero-ctas" style="justify-content: center;">
+        <a href="flash.html" class="btn btn-primary reveal" style="--stagger: 1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Flash from Browser
+        </a>
+        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener" class="btn btn-outline reveal" style="--stagger: 2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <img src="assets/logo.svg" width="28" height="28" alt="" aria-hidden="true">
+        <span>IOnode</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="learn-more.html">Learn More</a>
+        <a href="fleet.html">Fleet</a>
+        <a href="web-ui.html">Web UI</a>
+        <a href="openclaw-integration.html">OpenClaw</a>
+        <a href="flash.html">Flash</a>
+        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <span class="footer-copy">&copy; 2026 Mario Schallner</span>
+      <div class="footer-ecosystem">Part of the WireClaw ecosystem - <a href="https://wireclaw.io" target="_blank" rel="noopener">wireclaw.io</a></div>
+    </div>
+  </footer>
+
+  <script defer src="js/nav.js"></script>
+  <script defer src="js/scroll-reveal.js"></script>
+</body>
+</html>
