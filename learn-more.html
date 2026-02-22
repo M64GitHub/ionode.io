@@ -40,6 +40,7 @@
       </a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="learn-more.html" class="active">Learn More</a>
+        <a href="sensors.html">Sensors</a>
         <a href="fleet.html">Fleet</a>
         <a href="web-ui.html">Web UI</a>
         <a href="openclaw-integration.html">OpenClaw</a>
@@ -88,7 +89,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3"/></svg>
             Device Kinds
           </div>
-          <p>14 sensor &amp; actuator types</p>
+          <p>20 sensor &amp; actuator types</p>
         </a>
         <a href="#hackability" class="ref-card" style="text-decoration: none; text-align: center;">
           <div class="ref-card-name" style="font-size: 0.85rem;">
@@ -210,6 +211,10 @@
             <tr><th>{name}.hal.system.temperature</th><td>Chip temp in &deg;C</td></tr>
             <tr><th>{name}.hal.system.heap</th><td>Free heap in bytes</td></tr>
             <tr><th>{name}.hal.system.uptime</th><td>Seconds since boot</td></tr>
+            <tr><th>{name}.hal.i2c.scan</th><td>Scan I2C bus &rarr; array of detected addresses</td></tr>
+            <tr><th>{name}.hal.i2c.{addr}.read</th><td>Read I2C register bytes</td></tr>
+            <tr><th>{name}.hal.i2c.{addr}.write</th><td>Write I2C register bytes</td></tr>
+            <tr><th>{name}.hal.i2c.recover</th><td>Bus recovery (9&times; SCL toggle)</td></tr>
             <tr><th>{name}.hal.device.list</th><td>JSON array of all registered devices</td></tr>
           </tbody>
         </table>
@@ -244,7 +249,7 @@
     <div class="container">
       <div class="section-header reveal">
         <h2>Device <span class="accent">Kinds</span></h2>
-        <p>10 sensor types. 4 actuator types. Register in <code>devices.json</code> or via the web UI.</p>
+        <p>15 sensor types. 5 actuator types. Register via CLI, NATS, web UI, or <code>devices.json</code>.</p>
       </div>
 
       <h3 class="reveal" style="text-align: center; margin-bottom: var(--space-xl);">Sensors</h3>
@@ -289,10 +294,30 @@
           <div class="ref-card-name">serial_text</div>
           <p>Reads lines from UART1. Parses numeric value.</p>
         </div>
+        <div class="ref-card">
+          <div class="ref-card-name">i2c_bme280</div>
+          <p>BME280: temperature, humidity, pressure. 3 channels.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">i2c_bh1750</div>
+          <p>BH1750: ambient light in lux.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">i2c_sht31</div>
+          <p>SHT31: high-accuracy temperature &amp; humidity.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">i2c_ads1115</div>
+          <p>ADS1115: 16-bit ADC, 4 channels.</p>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-name">i2c_generic</div>
+          <p>Any I2C sensor. Raw register read with configurable scale.</p>
+        </div>
       </div>
 
       <h3 class="reveal" style="text-align: center; margin-top: var(--space-3xl); margin-bottom: var(--space-xl);">Actuators</h3>
-      <div class="ref-grid reveal" style="--stagger: 1; grid-template-columns: repeat(4, 1fr);">
+      <div class="ref-grid reveal" style="--stagger: 1; grid-template-columns: repeat(5, 1fr);">
         <div class="ref-card">
           <div class="ref-card-name">digital_out</div>
           <p>Digital output. High or low.</p>
@@ -309,6 +334,10 @@
           <div class="ref-card-name">rgb_led</div>
           <p>Built-in RGB LED. Packed 0xRRGGBB.</p>
         </div>
+        <div class="ref-card">
+          <div class="ref-card-name">ssd1306</div>
+          <p>OLED text display. Template-driven, auto-refresh.</p>
+        </div>
       </div>
 
       <div class="terminal reveal" style="--stagger: 2; max-width: 620px; margin: var(--space-3xl) auto 0;">
@@ -320,9 +349,11 @@
         </div>
         <div class="terminal-body">
 <pre style="margin: 0; color: var(--text-secondary); font-size: 0.82rem;">[
-  {"n":"room_temp", "k":"ntc_10k",    "p":2,  "u":"C",  "i":false},
-  {"n":"light",     "k":"ldr",        "p":3,  "u":"%",  "i":false},
-  {"n":"door",      "k":"digital_in", "p":7,  "u":"",   "i":false},
+  {"n":"bme_temp",  "k":"i2c_bme280", "p":0,  "u":"C",  "i":false, "ia":118},
+  {"n":"bme_humi",  "k":"i2c_bme280", "p":1,  "u":"%",  "i":false, "ia":118},
+  {"n":"light",     "k":"i2c_bh1750", "p":0,  "u":"lux","i":false, "ia":35},
+  {"n":"display",   "k":"ssd1306",    "p":0,  "u":"",   "i":false, "ia":60,
+   "dt":"T:{bme_temp}C H:{bme_humi}%"},
   {"n":"heater",    "k":"relay",      "p":8,  "u":"",   "i":true},
   {"n":"fan",       "k":"pwm",        "p":9,  "u":"",   "i":false}
 ]</pre>
@@ -522,6 +553,7 @@
       <nav class="footer-links" aria-label="Footer navigation">
         <a href="index.html">Home</a>
         <a href="learn-more.html">Learn More</a>
+        <a href="sensors.html">Sensors</a>
         <a href="fleet.html">Fleet</a>
         <a href="web-ui.html">Web UI</a>
         <a href="openclaw-integration.html">OpenClaw</a>

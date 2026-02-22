@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensors &amp; Displays - IOnode</title>
+  <meta name="description" content="IOnode supports BME280, BH1750, SHT31, ADS1115, NTC thermistors, LDRs, and SSD1306 OLED displays. Wire it, register it, read it. 20 device types built in.">
+  <meta name="author" content="Mario Schallner">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ionode.io/sensors.html">
+  <meta property="og:title" content="Sensors &amp; Displays - IOnode">
+  <meta property="og:description" content="BME280, BH1750, SHT31, ADS1115, NTC, LDR, SSD1306 OLED — wire it, register it, read it. All over NATS.">
+  <meta property="og:site_name" content="IOnode">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sensors &amp; Displays - IOnode">
+  <meta name="twitter:description" content="BME280, BH1750, SHT31, ADS1115, NTC, LDR, SSD1306 OLED — wire it, register it, read it. All over NATS.">
+  <!-- Theme -->
+  <meta name="theme-color" content="#ff8c00">
+  <link rel="canonical" href="https://ionode.io/sensors.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/learn-more.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .sensor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .sensor-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .sensor-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .sensor-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      transition: all var(--transition-base);
+    }
+    .sensor-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-dim);
+    }
+    .sensor-card .sensor-kind {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-xs);
+    }
+    .sensor-card h3 {
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+      font-size: 1.1rem;
+    }
+    .sensor-card .sensor-channels {
+      display: flex;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+      margin-top: var(--space-sm);
+    }
+    .sensor-card .sensor-channels span {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      background: var(--accent-dim);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+    }
+    .display-hero {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl) var(--space-xl);
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .oled-sim {
+      display: inline-block;
+      background: #000;
+      border: 2px solid #333;
+      border-radius: var(--radius-sm);
+      padding: var(--space-md) var(--space-lg);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #00d4ff;
+      text-align: left;
+      margin: var(--space-lg) 0;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.15), inset 0 0 30px rgba(0, 212, 255, 0.05);
+    }
+    .wiring-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      max-width: 400px;
+    }
+    .wiring-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      max-width: 860px;
+      margin: var(--space-xl) auto 0;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .wiring-grid { grid-template-columns: 1fr; }
+      .wiring-box { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="IOnode home">
+        <img src="assets/logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>IOnode</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="learn-more.html">Learn More</a>
+        <a href="sensors.html" class="active">Sensors</a>
+        <a href="fleet.html">Fleet</a>
+        <a href="web-ui.html">Web UI</a>
+        <a href="openclaw-integration.html">OpenClaw</a>
+        <a href="flash.html">Flash</a>
+        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </nav>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="reveal">From thermistors to <span class="accent">OLED dashboards.</span></h1>
+      <p class="reveal" style="--stagger: 1">Wire it. Register it. Read it. Three commands, any sensor — all over NATS.</p>
+    </div>
+  </section>
+
+  <!-- The Pattern -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Every sensor, same <span class="accent">pattern</span></h2>
+        <p>Doesn't matter if it's a $0.50 thermistor or a $6 BME280. The workflow is always the same.</p>
+      </div>
+      <div class="arch-steps">
+        <div class="arch-step reveal" style="--stagger: 0">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div>
+            <h3>1. Wire it</h3>
+            <p style="color: var(--text-secondary);">4 wires for I2C (3.3V, GND, SDA, SCL). 3 wires for analog (3.3V, GND, signal). Same pins every time.</p>
+          </div>
+        </div>
+        <div class="arch-step reveal" style="--stagger: 1">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          </div>
+          <div>
+            <h3>2. Register it</h3>
+            <p style="color: var(--text-secondary);"><code style="color: var(--accent); background: var(--accent-dim); padding: 0.1rem 0.4rem; border-radius: 3px;">ionode device add ionode-01 temp i2c_bme280 --channel 0 --unit C --i2c-addr 118</code></p>
+          </div>
+        </div>
+        <div class="arch-step reveal" style="--stagger: 2">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div>
+            <h3>3. Read it</h3>
+            <p style="color: var(--text-secondary);"><code style="color: var(--accent); background: var(--accent-dim); padding: 0.1rem 0.4rem; border-radius: 3px;">ionode read ionode-01 temp</code> → <span style="color: var(--accent); font-weight: 700;">23.5 C</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="terminal reveal" style="--stagger: 3; max-width: 620px; margin: var(--space-3xl) auto 0;">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">what you get for free</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin: 0; color: var(--text-secondary);"><span style="color: var(--accent);">✓</span> Readable via CLI, NATS, web UI, and dashboard
+<span style="color: var(--accent);">✓</span> EMA-smoothed for stable readings
+<span style="color: var(--accent);">✓</span> History recorded every 5 minutes (sparkline)
+<span style="color: var(--accent);">✓</span> Threshold events with edge detection
+<span style="color: var(--accent);">✓</span> Persisted across reboots
+<span style="color: var(--accent);">✓</span> Discoverable by other tools (OpenClaw, scripts, etc.)
+
+<span style="color: var(--text-muted);">All automatic. Zero config.</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- I2C Sensors -->
+  <section class="architecture-deep">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>I2C <span class="accent">Sensors</span></h2>
+        <p>Raw Wire.h drivers. No external libraries. Under 18KB flash total. Five sensor families built in.</p>
+      </div>
+      <div class="sensor-grid reveal" style="--stagger: 0">
+        <div class="sensor-card">
+          <div class="sensor-kind">i2c_bme280</div>
+          <h3>BME280</h3>
+          <p>The king of environmental sensors. Temperature, humidity, and barometric pressure from one chip.</p>
+          <div class="sensor-channels">
+            <span>ch0: temp</span>
+            <span>ch1: humidity</span>
+            <span>ch2: pressure</span>
+          </div>
+        </div>
+        <div class="sensor-card">
+          <div class="sensor-kind">i2c_bh1750</div>
+          <h3>BH1750</h3>
+          <p>Calibrated ambient light in lux. One channel, one address, dead simple.</p>
+          <div class="sensor-channels">
+            <span>lux</span>
+          </div>
+        </div>
+        <div class="sensor-card">
+          <div class="sensor-kind">i2c_sht31</div>
+          <h3>SHT31</h3>
+          <p>High-accuracy temperature and humidity. Slightly more precise than BME280 for humidity.</p>
+          <div class="sensor-channels">
+            <span>ch0: temp</span>
+            <span>ch1: humidity</span>
+          </div>
+        </div>
+        <div class="sensor-card">
+          <div class="sensor-kind">i2c_ads1115</div>
+          <h3>ADS1115</h3>
+          <p>16-bit ADC with 4 channels. When the ESP32's 12-bit ADC isn't enough. Soil moisture, gas sensors, anything analog.</p>
+          <div class="sensor-channels">
+            <span>ch0–3: mV</span>
+          </div>
+        </div>
+        <div class="sensor-card">
+          <div class="sensor-kind">i2c_generic</div>
+          <h3>Any I2C Sensor</h3>
+          <p>The escape hatch. Read any register, set address, length, and scale. Hundreds of sensors — no firmware update needed.</p>
+          <div class="sensor-channels">
+            <span>configurable</span>
+          </div>
+        </div>
+        <div class="sensor-card">
+          <div class="sensor-kind">ntc_10k · ldr</div>
+          <h3>Analog Sensors</h3>
+          <p>NTC thermistors ($0.50, Steinhart-Hart, EMA-smoothed) and LDRs (light level as 0–100%). One resistor, two wires.</p>
+          <div class="sensor-channels">
+            <span>°C</span>
+            <span>%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- I2C Scan demo -->
+      <div class="terminal reveal" style="--stagger: 1; max-width: 620px; margin: var(--space-3xl) auto 0;">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">ionode i2c scan</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin: 0; color: var(--text-secondary);"><span class="comment">$ ionode i2c ionode-01 scan</span>
+
+<span style="color: var(--accent);">━━</span> I2C Scan  ·  ionode-01
+
+  <span style="color: var(--text-muted);">ADDR    HEX      COMMON DEVICE</span>
+<span style="color: var(--text-muted);">────────────────────────────────────────</span>
+  <span style="color: var(--led-blue);">35</span>      <span style="color: var(--text-muted);">0x23</span>     BH1750
+  <span style="color: var(--led-blue);">60</span>      <span style="color: var(--text-muted);">0x3C</span>     SSD1306 OLED
+  <span style="color: var(--led-blue);">118</span>     <span style="color: var(--text-muted);">0x76</span>     BME280
+
+  <span style="color: var(--text-muted);">3 device(s) found</span></pre>
+        </div>
+      </div>
+      <p class="code-label reveal" style="--stagger: 2; text-align: center; margin-top: var(--space-lg);">
+        Plug in a sensor. Scan the bus. IOnode tells you what's there.
+      </p>
+    </div>
+  </section>
+
+  <!-- OLED Display -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>SSD1306 OLED <span class="accent">Display</span></h2>
+        <p>A live dashboard on a $3 screen. Template engine with auto-refresh. No code.</p>
+      </div>
+
+      <div class="display-hero reveal" style="--stagger: 0">
+        <div class="oled-sim">
+ionode-01 192.168.1.42<br>
+<br>
+Temp:  23.5 C<br>
+Humi:  45.2 %<br>
+Pres:  1013.2 hPa<br>
+Light: 342 lux<br>
+<br>
+Up:4h 37m  189KB
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: var(--space-sm);">128×64 pixels · 8 lines × 21 chars · refreshes every 5 seconds</p>
+      </div>
+
+      <!-- Template system -->
+      <div class="terminal reveal" style="--stagger: 1; max-width: 700px; margin: var(--space-2xl) auto 0;">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">template engine</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin: 0; color: var(--text-secondary);"><span class="comment"># Register display with a live template</span>
+<span class="comment">$ ionode device add ionode-01 screen ssd1306 0 --i2c-addr 60 \</span>
+<span class="comment">    --template "{name} {ip}\nT:{bme_temp}C H:{bme_humi}%\nUp:{uptime} {heap}KB"</span>
+
+<span style="color: var(--text-muted);">Tokens auto-resolve to live sensor values:</span>
+  <span style="color: var(--accent);">{bme_temp}</span>  → current reading of the bme_temp sensor
+  <span style="color: var(--accent);">{ip}</span>        → node IP address
+  <span style="color: var(--accent);">{uptime}</span>    → time since boot
+  <span style="color: var(--accent);">{heap}</span>      → free memory in KB
+  <span style="color: var(--accent);">{name}</span>      → device name
+
+<span class="comment"># Or send raw text anytime</span>
+<span class="comment">$ ionode write ionode-01 screen "!Hello World"</span>
+  <span style="color: var(--led-green);">✓</span> screen ← Hello World</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wiring -->
+  <section class="architecture-deep">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Same four <span class="accent">wires</span></h2>
+        <p>Every I2C device connects the same way. Multiple sensors share one bus.</p>
+      </div>
+      <div class="wiring-grid reveal" style="--stagger: 0">
+        <div class="wiring-box">
+          <div style="color: var(--accent); font-weight: 600; margin-bottom: var(--space-sm);">Single sensor</div>
+<pre style="margin: 0; white-space: pre;">ESP32           BME280
+─────           ──────
+3.3V ────────── VCC
+GND  ────────── GND
+SDA  ────────── SDA
+SCL  ────────── SCL</pre>
+        </div>
+        <div class="wiring-box">
+          <div style="color: var(--accent); font-weight: 600; margin-bottom: var(--space-sm);">Shared bus (sensor + display)</div>
+<pre style="margin: 0; white-space: pre;">ESP32       BME280    SSD1306
+─────       ──────    ───────
+3.3V ──┬─── VCC  ┬── VCC
+GND  ──┬─── GND  ┬── GND
+SDA  ──┬─── SDA  ┬── SDA
+SCL  ──┬─── SCL  ┬── SCL</pre>
+        </div>
+      </div>
+
+      <div class="specs-wrapper reveal" style="--stagger: 1; margin-top: var(--space-2xl);">
+        <table class="specs-table">
+          <tbody>
+            <tr><th>ESP32-C6</th><td>SDA: GPIO 6 &middot; SCL: GPIO 7</td></tr>
+            <tr><th>ESP32-S3</th><td>SDA: GPIO 8 &middot; SCL: GPIO 9</td></tr>
+            <tr><th>ESP32-C3</th><td>SDA: GPIO 4 &middot; SCL: GPIO 6</td></tr>
+            <tr><th>Classic ESP32</th><td>SDA: GPIO 21 &middot; SCL: GPIO 22</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="code-label reveal" style="--stagger: 2; text-align: center; margin-top: var(--space-lg);">
+        Fixed per chip. Auto-detected. No configuration.
+      </p>
+    </div>
+  </section>
+
+  <!-- Full Example -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Weather station in <span class="accent">4 commands</span></h2>
+        <p>BME280 + SSD1306 OLED on the same I2C bus. Complete setup.</p>
+      </div>
+      <div class="terminal reveal" style="--stagger: 0; max-width: 750px; margin: 0 auto;">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">from zero to weather station</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin: 0; color: var(--text-secondary);"><span class="comment"># Register the BME280 channels</span>
+$ ionode device add ionode-01 bme_temp i2c_bme280 --channel 0 --unit C --i2c-addr 118
+  <span style="color: var(--led-green);">+</span>  bme_temp  i2c_bme280  I2C 0x76 ch0
+
+$ ionode device add ionode-01 bme_humi i2c_bme280 --channel 1 --unit % --i2c-addr 118
+  <span style="color: var(--led-green);">+</span>  bme_humi  i2c_bme280  I2C 0x76 ch1
+
+$ ionode device add ionode-01 bme_pres i2c_bme280 --channel 2 --unit hPa --i2c-addr 118
+  <span style="color: var(--led-green);">+</span>  bme_pres  i2c_bme280  I2C 0x76 ch2
+
+<span class="comment"># Register the OLED with a live template</span>
+$ ionode device add ionode-01 display ssd1306 0 --i2c-addr 60 \
+    --template "T:{bme_temp}C H:{bme_humi}%\nP:{bme_pres}hPa\n\n{name} {ip}\nUp:{uptime}"
+  <span style="color: var(--led-green);">+</span>  display  ssd1306  I2C 0x3C
+
+<span style="color: var(--accent);">Done.</span> <span style="color: var(--text-muted);">Live readings on the OLED. Auto-refreshes. Survives reboots.</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Raw I2C Access -->
+  <section class="architecture-deep">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Raw I2C <span class="accent">access</span></h2>
+        <p>Debug the bus remotely. No serial cable needed.</p>
+      </div>
+      <div class="specs-wrapper reveal" style="--stagger: 0">
+        <table class="specs-table">
+          <tbody>
+            <tr><th>ionode i2c scan</th><td>Find every device on the bus</td></tr>
+            <tr><th>ionode i2c detect &lt;addr&gt;</th><td>Check if a specific address responds</td></tr>
+            <tr><th>ionode i2c read &lt;addr&gt;</th><td>Read register bytes</td></tr>
+            <tr><th>ionode i2c write &lt;addr&gt;</th><td>Write register bytes</td></tr>
+            <tr><th>ionode i2c recover</th><td>Bus stuck? 9× SCL toggle to unstick it</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="code-label reveal" style="--stagger: 1; text-align: center; margin-top: var(--space-lg);">
+        Every I2C operation is also a NATS subject: <code style="color: var(--accent);">{name}.hal.i2c.scan</code>, <code style="color: var(--accent);">{name}.hal.i2c.{addr}.read</code>, etc.
+      </p>
+    </div>
+  </section>
+
+  <!-- All 20 Device Types -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>All <span class="accent">20</span> device types</h2>
+      </div>
+
+      <h3 class="reveal" style="text-align: center; margin-bottom: var(--space-xl);">Sensors</h3>
+      <div class="ref-grid reveal" style="--stagger: 0; grid-template-columns: repeat(3, 1fr);">
+        <div class="ref-card"><div class="ref-card-name">digital_in</div><p>Digital input → 0 or 1</p></div>
+        <div class="ref-card"><div class="ref-card-name">analog_in</div><p>ADC → 0–4095 (12-bit)</p></div>
+        <div class="ref-card"><div class="ref-card-name">ntc_10k</div><p>Thermistor → °C (Steinhart-Hart)</p></div>
+        <div class="ref-card"><div class="ref-card-name">ldr</div><p>Photoresistor → 0–100%</p></div>
+        <div class="ref-card"><div class="ref-card-name">internal_temp</div><p>Chip temperature (no hardware)</p></div>
+        <div class="ref-card"><div class="ref-card-name">clock_hour</div><p>Current hour 0–23 (NTP)</p></div>
+        <div class="ref-card"><div class="ref-card-name">clock_minute</div><p>Current minute 0–59</p></div>
+        <div class="ref-card"><div class="ref-card-name">clock_hhmm</div><p>Combined HHMM (1430 = 2:30 PM)</p></div>
+        <div class="ref-card"><div class="ref-card-name">nats_value</div><p>Subscribes to a NATS subject</p></div>
+        <div class="ref-card"><div class="ref-card-name">serial_text</div><p>UART line → numeric value</p></div>
+        <div class="ref-card"><div class="ref-card-name">i2c_bme280</div><p>Temp / humidity / pressure</p></div>
+        <div class="ref-card"><div class="ref-card-name">i2c_bh1750</div><p>Ambient light (lux)</p></div>
+        <div class="ref-card"><div class="ref-card-name">i2c_sht31</div><p>Temp / humidity (high accuracy)</p></div>
+        <div class="ref-card"><div class="ref-card-name">i2c_ads1115</div><p>16-bit ADC (4 channels)</p></div>
+        <div class="ref-card"><div class="ref-card-name">i2c_generic</div><p>Any I2C register + scale</p></div>
+      </div>
+
+      <h3 class="reveal" style="text-align: center; margin-top: var(--space-3xl); margin-bottom: var(--space-xl);">Actuators</h3>
+      <div class="ref-grid reveal" style="--stagger: 1; grid-template-columns: repeat(5, 1fr); max-width: 960px;">
+        <div class="ref-card"><div class="ref-card-name">digital_out</div><p>High or low</p></div>
+        <div class="ref-card"><div class="ref-card-name">relay</div><p>With inversion</p></div>
+        <div class="ref-card"><div class="ref-card-name">pwm</div><p>0–255 duty</p></div>
+        <div class="ref-card"><div class="ref-card-name">rgb_led</div><p>0xRRGGBB</p></div>
+        <div class="ref-card"><div class="ref-card-name">ssd1306</div><p>OLED text display</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="github-cta">
+    <div class="container">
+      <h2 class="reveal">Ready to <span class="accent">wire up?</span></h2>
+      <p class="reveal" style="--stagger: 1; color: var(--text-secondary); margin-bottom: var(--space-xl);">Flash an IOnode. Plug in a sensor. Read it from anywhere.</p>
+      <div class="hero-ctas" style="justify-content: center;">
+        <a href="flash.html" class="btn btn-primary reveal" style="--stagger: 1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Flash from Browser
+        </a>
+        <a href="learn-more.html" class="btn btn-outline reveal" style="--stagger: 2">
+          Learn More &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <img src="assets/logo.svg" width="28" height="28" alt="" aria-hidden="true">
+        <span>IOnode</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="learn-more.html">Learn More</a>
+        <a href="sensors.html">Sensors</a>
+        <a href="fleet.html">Fleet</a>
+        <a href="web-ui.html">Web UI</a>
+        <a href="openclaw-integration.html">OpenClaw</a>
+        <a href="flash.html">Flash</a>
+        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <span class="footer-copy">&copy; 2026 Mario Schallner</span>
+      <div class="footer-ecosystem">Part of the WireClaw ecosystem - <a href="https://wireclaw.io" target="_blank" rel="noopener">wireclaw.io</a></div>
+    </div>
+  </footer>
+
+  <script defer src="js/nav.js"></script>
+  <script defer src="js/scroll-reveal.js"></script>
+</body>
+</html>
