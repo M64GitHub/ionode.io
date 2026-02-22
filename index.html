@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IOnode - Flash any ESP32. It speaks NATS.</title>
-  <meta name="description" content="IOnode turns any ESP32 into a NATS-addressable hardware node. GPIO, I2C sensors, OLED displays, actuators — all reachable via request/reply. Flash from browser.">
+  <meta name="description" content="IOnode turns any ESP32 into a NATS-addressable hardware node. GPIO, I2C sensors, OLED displays, actuators - all reachable via request/reply. Flash from browser.">
   <meta name="author" content="Mario Schallner">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ionode.io/">
   <meta property="og:title" content="IOnode - Flash any ESP32. Control hardware over NATS.">
-  <meta property="og:description" content="Turn any ESP32 into a NATS-addressable hardware node. I2C sensors, OLED displays, GPIO, fleet management — from $3.">
+  <meta property="og:description" content="Turn any ESP32 into a NATS-addressable hardware node. I2C sensors, OLED displays, GPIO, fleet management - from $3.">
   <meta property="og:site_name" content="IOnode">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
@@ -72,7 +72,7 @@
           <span class="badge badge-chip">ESP32-C6</span>
           <span class="badge badge-chip">ESP32-C3</span>
         </div>
-        <p class="subtitle"><span class="accent">GPIO</span>, <span class="accent">I2C sensors</span>, <span class="accent">OLED displays</span> — every pin gets a NATS address. Read a temperature. Drive a display. Manage a fleet.</p>
+        <p class="subtitle"><span class="accent">GPIO</span>, <span class="accent">I2C sensors</span>, <span class="accent">OLED displays</span> - every pin gets a NATS address. Read a temperature. Drive a display. Manage a fleet.</p>
         <div class="hero-ctas">
           <a href="flash.html" class="btn btn-primary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -110,7 +110,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
           </div>
           <h3>20 Device Types Built In</h3>
-          <p>BME280, BH1750, SSD1306, NTC, relays, PWM — or add your own in minutes.</p>
+          <p>BME280, BH1750, SSD1306, NTC, relays, PWM - or add your own in minutes.</p>
         </div>
       </div>
     </div>
@@ -146,30 +146,6 @@
         </div>
       </div>
       <p class="code-label reveal" style="--stagger: 2">Under the hood it's pure <span class="accent">NATS request/reply</span>. Use the CLI, raw NATS, scripts, or any language with a NATS client.</p>
-    </div>
-  </section>
-
-  <!-- OpenClaw Integration -->
-  <section class="openclaw-teaser">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="teaser-statement">Add <span class="accent">OpenClaw</span>. Talk to your fleet.</p>
-      </div>
-      <p class="reveal" style="--stagger: 0; color: var(--text-secondary); max-width: 560px; margin: 0 auto var(--space-xl); font-size: 0.95rem; text-align: center;">Chat on Telegram. Your AI agent reads sensors, drives displays, toggles relays, and codes custom features — whatever you describe.</p>
-      <div class="recipe-chat reveal" style="max-width: 580px; margin: 0 auto var(--space-xl); --stagger: 1">
-        <div class="chat-label">Telegram</div>
-        <div class="chat-msg chat-user">show "Good morning!" and the temperature on the OLED</div>
-        <div class="chat-msg chat-bot">Done. Display template set:<br><code style="font-size: 0.82rem; color: var(--accent);">Good morning!\nT:{bme_temp}C H:{bme_humi}%</code><br><span style="color: var(--text-muted); font-size: 0.82rem;">Auto-refreshes every 5s with live readings ⚡</span></div>
-        <div class="chat-msg chat-user">if any node goes above 30°C, message me</div>
-        <div class="chat-msg chat-bot">Done. Monitoring bme_temp on all 3 nodes. I'll ping you on Telegram if anything crosses 30°C. 🌡️</div>
-      </div>
-      <div class="teaser-examples reveal" style="--stagger: 2">
-        <div class="teaser-example">&ldquo;Set the LED to red when the CI build fails&rdquo;</div>
-        <div class="teaser-example">&ldquo;Build a dashboard: IP, temperature, humidity, uptime&rdquo;</div>
-        <div class="teaser-example">&ldquo;Log humidity from every node every 5 minutes&rdquo;</div>
-      </div>
-      <a href="openclaw-integration.html" class="btn btn-outline reveal" style="--stagger: 3">OpenClaw Integration &rarr;</a>
-      <p class="teaser-footnote reveal" style="--stagger: 4">Part of the <a href="https://wireclaw.io" target="_blank" rel="noopener">WireClaw</a> ecosystem</p>
     </div>
   </section>
 
@@ -246,6 +222,30 @@
           Explore Fleet Management &rarr;
         </a>
       </div>
+    </div>
+  </section>
+
+  <!-- OpenClaw Integration -->
+  <section class="openclaw-teaser">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="teaser-statement">Add <span class="accent">OpenClaw</span>. Talk to your fleet.</p>
+      </div>
+      <p class="reveal" style="--stagger: 0; color: var(--text-secondary); max-width: 560px; margin: 0 auto var(--space-xl); font-size: 0.95rem; text-align: center;">Chat on Telegram. Your AI agent reads sensors, drives displays, toggles relays, and codes custom features - whatever you describe.</p>
+      <div class="recipe-chat reveal" style="max-width: 580px; margin: 0 auto var(--space-xl); --stagger: 1">
+        <div class="chat-label">Telegram</div>
+        <div class="chat-msg chat-user">show "Good morning!" and the temperature on the OLED</div>
+        <div class="chat-msg chat-bot">Done. Display template set:<br><code style="font-size: 0.82rem; color: var(--accent);">Good morning!\nT:{bme_temp}C H:{bme_humi}%</code><br><span style="color: var(--text-muted); font-size: 0.82rem;">Auto-refreshes every 5s with live readings ⚡</span></div>
+        <div class="chat-msg chat-user">if any node goes above 30°C, message me</div>
+        <div class="chat-msg chat-bot">Done. Monitoring bme_temp on all 3 nodes. I'll ping you on Telegram if anything crosses 30°C. 🌡️</div>
+      </div>
+      <div class="teaser-examples reveal" style="--stagger: 2">
+        <div class="teaser-example">&ldquo;Set the LED to red when the CI build fails&rdquo;</div>
+        <div class="teaser-example">&ldquo;Build a dashboard: IP, temperature, humidity, uptime&rdquo;</div>
+        <div class="teaser-example">&ldquo;Log humidity from every node every 5 minutes&rdquo;</div>
+      </div>
+      <a href="openclaw-integration.html" class="btn btn-outline reveal" style="--stagger: 3">OpenClaw Integration &rarr;</a>
+      <p class="teaser-footnote reveal" style="--stagger: 4">Part of the <a href="https://wireclaw.io" target="_blank" rel="noopener">WireClaw</a> ecosystem</p>
     </div>
   </section>
 

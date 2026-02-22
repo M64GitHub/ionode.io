@@ -77,6 +77,13 @@
           </div>
           <p>The big picture in 30 seconds</p>
         </a>
+        <a href="#hal-protocol" class="ref-card" style="text-decoration: none; text-align: center;">
+          <div class="ref-card-name" style="font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+            NATS Subjects
+          </div>
+          <p>The protocol under the hood</p>
+        </a>
         <a href="#device-kinds" class="ref-card" style="text-decoration: none; text-align: center;">
           <div class="ref-card-name" style="font-size: 0.85rem;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3"/></svg>
@@ -84,22 +91,6 @@
           </div>
           <p>20 types across 6 categories</p>
         </a>
-        <a href="#hackability" class="ref-card" style="text-decoration: none; text-align: center;">
-          <div class="ref-card-name" style="font-size: 0.85rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-            Built to Hack
-          </div>
-          <p>Add a sensor in 2 steps</p>
-        </a>
-        <a href="#fleet" class="ref-card" style="text-decoration: none; text-align: center;">
-          <div class="ref-card-name" style="font-size: 0.85rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-            Fleet
-          </div>
-          <p>CLI, dashboard, events</p>
-        </a>
-      </div>
-      <div class="ref-grid reveal" style="--stagger: 1; grid-template-columns: repeat(4, 1fr); max-width: 900px; margin: var(--space-md) auto 0;">
         <a href="#web-ui" class="ref-card" style="text-decoration: none; text-align: center;">
           <div class="ref-card-name" style="font-size: 0.85rem;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -107,12 +98,21 @@
           </div>
           <p>On-device control panel</p>
         </a>
-        <a href="#hal-protocol" class="ref-card" style="text-decoration: none; text-align: center;">
+      </div>
+      <div class="ref-grid reveal" style="--stagger: 1; grid-template-columns: repeat(4, 1fr); max-width: 900px; margin: var(--space-md) auto 0;">
+        <a href="#fleet" class="ref-card" style="text-decoration: none; text-align: center;">
           <div class="ref-card-name" style="font-size: 0.85rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
-            NATS Subjects
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            Fleet
           </div>
-          <p>The protocol under the hood</p>
+          <p>CLI, dashboard, events</p>
+        </a>
+        <a href="#hackability" class="ref-card" style="text-decoration: none; text-align: center;">
+          <div class="ref-card-name" style="font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            Built to Hack
+          </div>
+          <p>Add a sensor in 2 steps</p>
         </a>
         <a href="#chips" class="ref-card" style="text-decoration: none; text-align: center;">
           <div class="ref-card-name" style="font-size: 0.85rem;">
@@ -189,6 +189,47 @@
     </div>
   </section>
 
+  <!-- The NATS Protocol -->
+  <section id="hal-protocol" class="architecture-deep">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Under the Hood: <span class="accent">NATS Subjects</span></h2>
+        <p>The <a href="fleet.html" style="color: var(--accent);">CLI</a>, <a href="web-ui.html" style="color: var(--accent);">web UI</a>, and <a href="fleet.html" style="color: var(--accent);">dashboard</a> are convenience layers. Underneath, every operation is a simple NATS subject. Script IOnode in any language with a NATS client.</p>
+      </div>
+
+      <div class="specs-wrapper reveal" style="--stagger: 0">
+        <table class="specs-table">
+          <tbody>
+            <tr><th style="color: var(--text-muted); font-weight: 400; font-family: var(--font-body);" colspan="2"><em>GPIO &amp; Peripherals</em></th></tr>
+            <tr><th>{name}.hal.gpio.{pin}.get</th><td>Read pin &rarr; <code>0</code> or <code>1</code></td></tr>
+            <tr><th>{name}.hal.gpio.{pin}.set</th><td>Write pin &rarr; <code>ok</code></td></tr>
+            <tr><th>{name}.hal.adc.{pin}.read</th><td>12-bit ADC &rarr; <code>0</code>–<code>4095</code></td></tr>
+            <tr><th>{name}.hal.pwm.{pin}.set</th><td>8-bit PWM &rarr; <code>ok</code></td></tr>
+            <tr><th>{name}.hal.uart.read / write</th><td>Serial bridge (requires serial_text device)</td></tr>
+            <tr><th style="color: var(--text-muted); font-weight: 400; font-family: var(--font-body);" colspan="2"><em>I2C</em></th></tr>
+            <tr><th>{name}.hal.i2c.scan</th><td>Scan bus &rarr; array of addresses</td></tr>
+            <tr><th>{name}.hal.i2c.{addr}.read</th><td>Read register bytes</td></tr>
+            <tr><th>{name}.hal.i2c.{addr}.write</th><td>Write register bytes</td></tr>
+            <tr><th>{name}.hal.i2c.recover</th><td>Bus recovery (9&times; SCL toggle)</td></tr>
+            <tr><th style="color: var(--text-muted); font-weight: 400; font-family: var(--font-body);" colspan="2"><em>Registered Devices</em></th></tr>
+            <tr><th>{name}.hal.{dev}</th><td>Read sensor or actuator state</td></tr>
+            <tr><th>{name}.hal.{dev}.set</th><td>Set actuator value &rarr; <code>ok</code></td></tr>
+            <tr><th>{name}.hal.{dev}.info</th><td>JSON: name, kind, value, pin, unit</td></tr>
+            <tr><th style="color: var(--text-muted); font-weight: 400; font-family: var(--font-body);" colspan="2"><em>Discovery &amp; System</em></th></tr>
+            <tr><th>_ion.discover</th><td>All nodes respond with capabilities</td></tr>
+            <tr><th>{name}.capabilities</th><td>Single node capabilities</td></tr>
+            <tr><th>{name}.hal.system.*</th><td>Chip temp, heap, uptime, RSSI, reset reason</td></tr>
+            <tr><th>{name}.hal.device.list</th><td>JSON array of all registered devices</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="code-label reveal" style="--stagger: 1; text-align: center; margin-top: var(--space-lg);">
+        Full protocol reference on <a href="https://github.com/M64GitHub/IOnode/blob/main/docs/NATS-API.md" target="_blank" rel="noopener" style="color: var(--accent);">GitHub</a>.
+      </p>
+    </div>
+  </section>
+
   <!-- Device Kinds -->
   <section id="device-kinds">
     <div class="container">
@@ -236,7 +277,7 @@
             Built-in
           </div>
           <p><code>internal_temp</code> · <code>rgb_led</code> · <code>clock_hour</code> · <code>clock_minute</code> · <code>clock_hhmm</code></p>
-          <p style="color: var(--text-muted); font-size: 0.78rem; margin-top: var(--space-xs);">No wiring needed. Chip temperature, RGB LED, and NTP clock — ready at boot.</p>
+          <p style="color: var(--text-muted); font-size: 0.78rem; margin-top: var(--space-xs);">No wiring needed. Chip temperature, RGB LED, and NTP clock - ready at boot.</p>
         </div>
         <div class="ref-card">
           <div class="ref-card-name">
@@ -269,71 +310,6 @@
   {"n":"heater",    "k":"relay",      "p":8,  "u":"",   "i":true},
   {"n":"fan",       "k":"pwm",        "p":9,  "u":"",   "i":false}
 ]</pre>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Built to be Hacked -->
-  <section id="hackability">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>Built to be <span class="accent">Hacked</span></h2>
-        <p>Adding a sensor type is a two-step process. No NATS code. No registration boilerplate.</p>
-      </div>
-      <div class="arch-steps">
-        <div class="arch-step reveal" style="--stagger: 0">
-          <div class="arch-step-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
-          </div>
-          <div>
-            <h3>1. Add the enum</h3>
-            <div class="code-block" style="margin-top: var(--space-md);">
-<pre style="margin: 0;"><span class="keyword">enum</span> DeviceKind {
-    <span class="comment">// ... existing kinds ...</span>
-    DEV_SENSOR_MY_SENSOR,      <span class="comment">// &larr; add here</span>
-};</pre>
-            </div>
-          </div>
-        </div>
-        <div class="arch-step reveal" style="--stagger: 1">
-          <div class="arch-step-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </div>
-          <div>
-            <h3>2. Add the read case + string mapping</h3>
-            <div class="code-block" style="margin-top: var(--space-md);">
-<pre style="margin: 0;"><span class="keyword">case</span> DEV_SENSOR_MY_SENSOR: {
-    result = readMyHardware(dev->pin);
-    record_history = <span class="keyword">true</span>;
-    <span class="keyword">break</span>;
-}
-
-<span class="comment">// deviceKindName:</span>
-<span class="keyword">case</span> DEV_SENSOR_MY_SENSOR: <span class="keyword">return</span> <span class="string">"my_sensor"</span>;
-
-<span class="comment">// kindFromString:</span>
-<span class="keyword">if</span> (strcmp(s, <span class="string">"my_sensor"</span>) == 0) <span class="keyword">return</span> DEV_SENSOR_MY_SENSOR;</pre>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="terminal reveal" style="--stagger: 2; max-width: 620px; margin: var(--space-3xl) auto 0;">
-        <div class="terminal-header">
-          <span class="terminal-dot"></span>
-          <span class="terminal-dot"></span>
-          <span class="terminal-dot"></span>
-          <span class="terminal-title">result</span>
-        </div>
-        <div class="terminal-body">
-<pre style="margin: 0; color: var(--text-secondary);">Your sensor is now:
-<span style="color: var(--accent);">&check;</span> Persisted in devices.json as {"k":"my_sensor"}
-<span style="color: var(--accent);">&check;</span> Readable via nats req ionode-01.hal.my_sensor ""
-<span style="color: var(--accent);">&check;</span> Listed in device.list and discovery responses
-<span style="color: var(--accent);">&check;</span> Background-polled for history every 5 minutes
-<span style="color: var(--accent);">&check;</span> Controllable via the web UI
-
-<span style="color: var(--text-muted);">No NATS code. The HAL router handles it.</span></pre>
         </div>
       </div>
     </div>
@@ -409,44 +385,68 @@
     </div>
   </section>
 
-  <!-- The NATS Protocol -->
-  <section id="hal-protocol">
+  <!-- Built to be Hacked -->
+  <section id="hackability">
     <div class="container">
       <div class="section-header reveal">
-        <h2>Under the Hood: <span class="accent">NATS Subjects</span></h2>
-        <p>The <a href="fleet.html" style="color: var(--accent);">CLI</a>, <a href="web-ui.html" style="color: var(--accent);">web UI</a>, and <a href="fleet.html" style="color: var(--accent);">dashboard</a> are convenience layers. Underneath, every operation is a simple NATS subject. This means you can script IOnode in any language with a NATS client.</p>
+        <h2>Built to be <span class="accent">Hacked</span></h2>
+        <p>Adding a sensor type is a two-step process. No NATS code. No registration boilerplate.</p>
       </div>
+      <div class="arch-steps">
+        <div class="arch-step reveal" style="--stagger: 0">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+          </div>
+          <div>
+            <h3>1. Add the enum</h3>
+            <div class="code-block" style="margin-top: var(--space-md);">
+<pre style="margin: 0;"><span class="keyword">enum</span> DeviceKind {
+    <span class="comment">// ... existing kinds ...</span>
+    DEV_SENSOR_MY_SENSOR,      <span class="comment">// &larr; add here</span>
+};</pre>
+            </div>
+          </div>
+        </div>
+        <div class="arch-step reveal" style="--stagger: 1">
+          <div class="arch-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div>
+            <h3>2. Add the read case + string mapping</h3>
+            <div class="code-block" style="margin-top: var(--space-md);">
+<pre style="margin: 0;"><span class="keyword">case</span> DEV_SENSOR_MY_SENSOR: {
+    result = readMyHardware(dev->pin);
+    record_history = <span class="keyword">true</span>;
+    <span class="keyword">break</span>;
+}
 
-      <div class="specs-wrapper reveal" style="--stagger: 0">
-        <table class="specs-table">
-          <tbody>
-            <tr><th style="color: var(--text-muted); font-weight: 400; font-family: var(--font-body);" colspan="2"><em>GPIO &amp; Peripherals</em></th></tr>
-            <tr><th>{name}.hal.gpio.{pin}.get</th><td>Read pin &rarr; <code>0</code> or <code>1</code></td></tr>
-            <tr><th>{name}.hal.gpio.{pin}.set</th><td>Write pin &rarr; <code>ok</code></td></tr>
-            <tr><th>{name}.hal.adc.{pin}.read</th><td>12-bit ADC &rarr; <code>0</code>–<code>4095</code></td></tr>
-            <tr><th>{name}.hal.pwm.{pin}.set</th><td>8-bit PWM &rarr; <code>ok</code></td></tr>
-            <tr><th>{name}.hal.uart.read / write</th><td>Serial bridge (requires serial_text device)</td></tr>
-            <tr><th style="color: var(--text-muted); font-weight: 400; font-family: var(--font-body);" colspan="2"><em>I2C</em></th></tr>
-            <tr><th>{name}.hal.i2c.scan</th><td>Scan bus &rarr; array of addresses</td></tr>
-            <tr><th>{name}.hal.i2c.{addr}.read</th><td>Read register bytes</td></tr>
-            <tr><th>{name}.hal.i2c.{addr}.write</th><td>Write register bytes</td></tr>
-            <tr><th>{name}.hal.i2c.recover</th><td>Bus recovery (9&times; SCL toggle)</td></tr>
-            <tr><th style="color: var(--text-muted); font-weight: 400; font-family: var(--font-body);" colspan="2"><em>Registered Devices</em></th></tr>
-            <tr><th>{name}.hal.{dev}</th><td>Read sensor or actuator state</td></tr>
-            <tr><th>{name}.hal.{dev}.set</th><td>Set actuator value &rarr; <code>ok</code></td></tr>
-            <tr><th>{name}.hal.{dev}.info</th><td>JSON: name, kind, value, pin, unit</td></tr>
-            <tr><th style="color: var(--text-muted); font-weight: 400; font-family: var(--font-body);" colspan="2"><em>Discovery &amp; System</em></th></tr>
-            <tr><th>_ion.discover</th><td>All nodes respond with capabilities</td></tr>
-            <tr><th>{name}.capabilities</th><td>Single node capabilities</td></tr>
-            <tr><th>{name}.hal.system.*</th><td>Chip temp, heap, uptime, RSSI, reset reason</td></tr>
-            <tr><th>{name}.hal.device.list</th><td>JSON array of all registered devices</td></tr>
-          </tbody>
-        </table>
+<span class="comment">// deviceKindName:</span>
+<span class="keyword">case</span> DEV_SENSOR_MY_SENSOR: <span class="keyword">return</span> <span class="string">"my_sensor"</span>;
+
+<span class="comment">// kindFromString:</span>
+<span class="keyword">if</span> (strcmp(s, <span class="string">"my_sensor"</span>) == 0) <span class="keyword">return</span> DEV_SENSOR_MY_SENSOR;</pre>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="terminal reveal" style="--stagger: 2; max-width: 620px; margin: var(--space-3xl) auto 0;">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">result</span>
+        </div>
+        <div class="terminal-body">
+<pre style="margin: 0; color: var(--text-secondary);">Your sensor is now:
+<span style="color: var(--accent);">&check;</span> Persisted in devices.json as {"k":"my_sensor"}
+<span style="color: var(--accent);">&check;</span> Readable via nats req ionode-01.hal.my_sensor ""
+<span style="color: var(--accent);">&check;</span> Listed in device.list and discovery responses
+<span style="color: var(--accent);">&check;</span> Background-polled for history every 5 minutes
+<span style="color: var(--accent);">&check;</span> Controllable via the web UI
 
-      <p class="code-label reveal" style="--stagger: 1; text-align: center; margin-top: var(--space-lg);">
-        Full protocol reference on <a href="https://github.com/M64GitHub/IOnode/blob/main/docs/NATS-API.md" target="_blank" rel="noopener" style="color: var(--accent);">GitHub</a>.
-      </p>
+<span style="color: var(--text-muted);">No NATS code. The HAL router handles it.</span></pre>
+        </div>
+      </div>
     </div>
   </section>
 
