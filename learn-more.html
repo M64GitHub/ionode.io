@@ -77,19 +77,12 @@
           </div>
           <p>The big picture in 30 seconds</p>
         </a>
-        <a href="#hal-protocol" class="ref-card" style="text-decoration: none; text-align: center;">
-          <div class="ref-card-name" style="font-size: 0.85rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
-            HAL Protocol
-          </div>
-          <p>The NATS subject structure</p>
-        </a>
         <a href="#device-kinds" class="ref-card" style="text-decoration: none; text-align: center;">
           <div class="ref-card-name" style="font-size: 0.85rem;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3"/></svg>
             Device Kinds
           </div>
-          <p>20 sensor &amp; actuator types</p>
+          <p>20 types across 6 categories</p>
         </a>
         <a href="#hackability" class="ref-card" style="text-decoration: none; text-align: center;">
           <div class="ref-card-name" style="font-size: 0.85rem;">
@@ -97,6 +90,13 @@
             Built to Hack
           </div>
           <p>Add a sensor in 2 steps</p>
+        </a>
+        <a href="#fleet" class="ref-card" style="text-decoration: none; text-align: center;">
+          <div class="ref-card-name" style="font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            Fleet
+          </div>
+          <p>CLI, dashboard, events</p>
         </a>
       </div>
       <div class="ref-grid reveal" style="--stagger: 1; grid-template-columns: repeat(4, 1fr); max-width: 900px; margin: var(--space-md) auto 0;">
@@ -107,12 +107,12 @@
           </div>
           <p>On-device control panel</p>
         </a>
-        <a href="#fleet" class="ref-card" style="text-decoration: none; text-align: center;">
+        <a href="#hal-protocol" class="ref-card" style="text-decoration: none; text-align: center;">
           <div class="ref-card-name" style="font-size: 0.85rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-            Fleet
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 2px;"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+            NATS Subjects
           </div>
-          <p>CLI, dashboard, events</p>
+          <p>The protocol under the hood</p>
         </a>
         <a href="#chips" class="ref-card" style="text-decoration: none; text-align: center;">
           <div class="ref-card-name" style="font-size: 0.85rem;">
@@ -185,61 +185,6 @@
 
 <span style="color: var(--text-muted);">No SDK. No cloud. No API keys. Just NATS messages.</span></pre>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- The HAL Protocol -->
-  <section id="hal-protocol" class="architecture-deep">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>The HAL <span class="accent">Protocol</span></h2>
-        <p>Every IOnode subject lives under <code>{device}.hal.*</code> - flat, human-readable, zero config.</p>
-      </div>
-
-      <h3 class="reveal" style="text-align: center; margin-bottom: var(--space-xl);">Core HAL (always available)</h3>
-      <div class="specs-wrapper reveal" style="--stagger: 0">
-        <table class="specs-table">
-          <tbody>
-            <tr><th>{name}.hal.gpio.{pin}.get</th><td>Read pin &rarr; <code>0</code> or <code>1</code></td></tr>
-            <tr><th>{name}.hal.gpio.{pin}.set</th><td>Write pin &rarr; <code>ok</code></td></tr>
-            <tr><th>{name}.hal.adc.{pin}.read</th><td>12-bit ADC &rarr; <code>0</code>-<code>4095</code></td></tr>
-            <tr><th>{name}.hal.pwm.{pin}.set</th><td>8-bit PWM output &rarr; <code>ok</code></td></tr>
-            <tr><th>{name}.hal.pwm.{pin}.get</th><td>Last written PWM value (cached)</td></tr>
-            <tr><th>{name}.hal.uart.read</th><td>Last UART line (requires serial_text device)</td></tr>
-            <tr><th>{name}.hal.uart.write</th><td>Send text over UART &rarr; <code>ok</code></td></tr>
-            <tr><th>{name}.hal.system.temperature</th><td>Chip temp in &deg;C</td></tr>
-            <tr><th>{name}.hal.system.heap</th><td>Free heap in bytes</td></tr>
-            <tr><th>{name}.hal.system.uptime</th><td>Seconds since boot</td></tr>
-            <tr><th>{name}.hal.i2c.scan</th><td>Scan I2C bus &rarr; array of detected addresses</td></tr>
-            <tr><th>{name}.hal.i2c.{addr}.read</th><td>Read I2C register bytes</td></tr>
-            <tr><th>{name}.hal.i2c.{addr}.write</th><td>Write I2C register bytes</td></tr>
-            <tr><th>{name}.hal.i2c.recover</th><td>Bus recovery (9&times; SCL toggle)</td></tr>
-            <tr><th>{name}.hal.device.list</th><td>JSON array of all registered devices</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 class="reveal" style="text-align: center; margin-top: var(--space-3xl); margin-bottom: var(--space-xl);">Registered Devices</h3>
-      <div class="specs-wrapper reveal" style="--stagger: 1">
-        <table class="specs-table">
-          <tbody>
-            <tr><th>{name}.hal.{dev}</th><td>Read sensor value or actuator state</td></tr>
-            <tr><th>{name}.hal.{dev}.get</th><td>Same as above (explicit)</td></tr>
-            <tr><th>{name}.hal.{dev}.set</th><td>Set actuator value &rarr; <code>ok</code></td></tr>
-            <tr><th>{name}.hal.{dev}.info</th><td>JSON: name, kind, value, pin, unit</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 class="reveal" style="text-align: center; margin-top: var(--space-3xl); margin-bottom: var(--space-xl);">Discovery</h3>
-      <div class="specs-wrapper reveal" style="--stagger: 2">
-        <table class="specs-table">
-          <tbody>
-            <tr><th>_ion.discover</th><td>All nodes respond with capabilities JSON</td></tr>
-            <tr><th>{name}.capabilities</th><td>Single node capabilities</td></tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </section>
@@ -464,6 +409,47 @@
     </div>
   </section>
 
+  <!-- The NATS Protocol -->
+  <section id="hal-protocol">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Under the Hood: <span class="accent">NATS Subjects</span></h2>
+        <p>The <a href="fleet.html" style="color: var(--accent);">CLI</a>, <a href="web-ui.html" style="color: var(--accent);">web UI</a>, and <a href="fleet.html" style="color: var(--accent);">dashboard</a> are convenience layers. Underneath, every operation is a simple NATS subject. This means you can script IOnode in any language with a NATS client.</p>
+      </div>
+
+      <div class="specs-wrapper reveal" style="--stagger: 0">
+        <table class="specs-table">
+          <tbody>
+            <tr><th style="color: var(--text-muted); font-weight: 400; font-family: var(--font-body);" colspan="2"><em>GPIO &amp; Peripherals</em></th></tr>
+            <tr><th>{name}.hal.gpio.{pin}.get</th><td>Read pin &rarr; <code>0</code> or <code>1</code></td></tr>
+            <tr><th>{name}.hal.gpio.{pin}.set</th><td>Write pin &rarr; <code>ok</code></td></tr>
+            <tr><th>{name}.hal.adc.{pin}.read</th><td>12-bit ADC &rarr; <code>0</code>–<code>4095</code></td></tr>
+            <tr><th>{name}.hal.pwm.{pin}.set</th><td>8-bit PWM &rarr; <code>ok</code></td></tr>
+            <tr><th>{name}.hal.uart.read / write</th><td>Serial bridge (requires serial_text device)</td></tr>
+            <tr><th style="color: var(--text-muted); font-weight: 400; font-family: var(--font-body);" colspan="2"><em>I2C</em></th></tr>
+            <tr><th>{name}.hal.i2c.scan</th><td>Scan bus &rarr; array of addresses</td></tr>
+            <tr><th>{name}.hal.i2c.{addr}.read</th><td>Read register bytes</td></tr>
+            <tr><th>{name}.hal.i2c.{addr}.write</th><td>Write register bytes</td></tr>
+            <tr><th>{name}.hal.i2c.recover</th><td>Bus recovery (9&times; SCL toggle)</td></tr>
+            <tr><th style="color: var(--text-muted); font-weight: 400; font-family: var(--font-body);" colspan="2"><em>Registered Devices</em></th></tr>
+            <tr><th>{name}.hal.{dev}</th><td>Read sensor or actuator state</td></tr>
+            <tr><th>{name}.hal.{dev}.set</th><td>Set actuator value &rarr; <code>ok</code></td></tr>
+            <tr><th>{name}.hal.{dev}.info</th><td>JSON: name, kind, value, pin, unit</td></tr>
+            <tr><th style="color: var(--text-muted); font-weight: 400; font-family: var(--font-body);" colspan="2"><em>Discovery &amp; System</em></th></tr>
+            <tr><th>_ion.discover</th><td>All nodes respond with capabilities</td></tr>
+            <tr><th>{name}.capabilities</th><td>Single node capabilities</td></tr>
+            <tr><th>{name}.hal.system.*</th><td>Chip temp, heap, uptime, RSSI, reset reason</td></tr>
+            <tr><th>{name}.hal.device.list</th><td>JSON array of all registered devices</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="code-label reveal" style="--stagger: 1; text-align: center; margin-top: var(--space-lg);">
+        Full protocol reference on <a href="https://github.com/M64GitHub/IOnode/blob/main/docs/NATS-API.md" target="_blank" rel="noopener" style="color: var(--accent);">GitHub</a>.
+      </p>
+    </div>
+  </section>
+
   <!-- Chip Compatibility -->
   <section id="chips">
     <div class="container">
@@ -496,15 +482,14 @@
   <!-- Bottom CTA -->
   <section class="github-cta">
     <div class="container">
-      <h2 class="reveal">Ready to <span class="accent">flash?</span></h2>
+      <h2 class="reveal">See what it can <span class="accent">sense.</span></h2>
       <div class="hero-ctas" style="justify-content: center;">
         <a href="flash.html" class="btn btn-primary reveal" style="--stagger: 1">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           Flash from Browser
         </a>
-        <a href="https://github.com/M64GitHub/IOnode" target="_blank" rel="noopener" class="btn btn-outline reveal" style="--stagger: 2">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          View on GitHub
+        <a href="sensors.html" class="btn btn-outline reveal" style="--stagger: 2">
+          Sensors &amp; Displays &rarr;
         </a>
       </div>
     </div>
