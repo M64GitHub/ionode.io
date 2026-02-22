@@ -249,95 +249,62 @@
     <div class="container">
       <div class="section-header reveal">
         <h2>Device <span class="accent">Kinds</span></h2>
-        <p>15 sensor types. 5 actuator types. Register via CLI, NATS, web UI, or <code>devices.json</code>.</p>
+        <p>20 device types across 6 categories. Register via CLI, NATS, web UI, or <code>devices.json</code>.</p>
       </div>
 
-      <h3 class="reveal" style="text-align: center; margin-bottom: var(--space-xl);">Sensors</h3>
-      <div class="ref-grid reveal" style="--stagger: 0">
+      <div class="ref-grid reveal" style="--stagger: 0; grid-template-columns: repeat(3, 1fr); max-width: 960px;">
         <div class="ref-card">
-          <div class="ref-card-name">digital_in</div>
-          <p>Digital input. Returns 0 or 1.</p>
+          <div class="ref-card-name">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+            GPIO
+          </div>
+          <p><code>digital_in</code> · <code>digital_out</code> · <code>analog_in</code> · <code>pwm</code> · <code>relay</code> (with inversion)</p>
+          <p style="color: var(--text-muted); font-size: 0.78rem; margin-top: var(--space-xs);">Direct pin access. Read switches, drive motors, toggle relays.</p>
         </div>
         <div class="ref-card">
-          <div class="ref-card-name">analog_in</div>
-          <p>ADC input. Raw value 0-4095.</p>
+          <div class="ref-card-name">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            Analog Sensors
+          </div>
+          <p><code>ntc_10k</code> · <code>ldr</code></p>
+          <p style="color: var(--text-muted); font-size: 0.78rem; margin-top: var(--space-xs);">Thermistor (Steinhart-Hart, EMA-smoothed) and light level (0–100%). One resistor, done.</p>
         </div>
         <div class="ref-card">
-          <div class="ref-card-name">ntc_10k</div>
-          <p>10K NTC thermistor. Steinhart-Hart, EMA-smoothed.</p>
+          <div class="ref-card-name">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            I2C Sensors
+          </div>
+          <p><code>i2c_bme280</code> · <code>i2c_bh1750</code> · <code>i2c_sht31</code> · <code>i2c_ads1115</code> · <code>i2c_generic</code></p>
+          <p style="color: var(--text-muted); font-size: 0.78rem; margin-top: var(--space-xs);">Raw Wire.h drivers. Multi-channel, per-address caching. Any I2C sensor via <code>i2c_generic</code>.</p>
         </div>
         <div class="ref-card">
-          <div class="ref-card-name">ldr</div>
-          <p>Light-dependent resistor. 0-100%.</p>
+          <div class="ref-card-name">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            OLED Display
+          </div>
+          <p><code>ssd1306</code></p>
+          <p style="color: var(--text-muted); font-size: 0.78rem; margin-top: var(--space-xs);">128×64 or 128×32 text display. Template engine with live sensor tokens, auto-refreshes every 5s.</p>
         </div>
         <div class="ref-card">
-          <div class="ref-card-name">internal_temp</div>
-          <p>On-die temperature sensor. No external hardware.</p>
+          <div class="ref-card-name">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Built-in
+          </div>
+          <p><code>internal_temp</code> · <code>rgb_led</code> · <code>clock_hour</code> · <code>clock_minute</code> · <code>clock_hhmm</code></p>
+          <p style="color: var(--text-muted); font-size: 0.78rem; margin-top: var(--space-xs);">No wiring needed. Chip temperature, RGB LED, and NTP clock — ready at boot.</p>
         </div>
         <div class="ref-card">
-          <div class="ref-card-name">clock_hour</div>
-          <p>Current hour (0-23). NTP-synced with timezone.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">clock_minute</div>
-          <p>Current minute (0-59).</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">clock_hhmm</div>
-          <p>Combined HHMM (e.g. 1430 = 2:30 PM).</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">nats_value</div>
-          <p>Subscribes to a NATS subject. Stores last value. No pin.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">serial_text</div>
-          <p>Reads lines from UART1. Parses numeric value.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">i2c_bme280</div>
-          <p>BME280: temperature, humidity, pressure. 3 channels.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">i2c_bh1750</div>
-          <p>BH1750: ambient light in lux.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">i2c_sht31</div>
-          <p>SHT31: high-accuracy temperature &amp; humidity.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">i2c_ads1115</div>
-          <p>ADS1115: 16-bit ADC, 4 channels.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">i2c_generic</div>
-          <p>Any I2C sensor. Raw register read with configurable scale.</p>
+          <div class="ref-card-name">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Virtual
+          </div>
+          <p><code>nats_value</code> · <code>serial_text</code></p>
+          <p style="color: var(--text-muted); font-size: 0.78rem; margin-top: var(--space-xs);">Subscribe to NATS subjects or read UART lines. Bridge external data into the device registry.</p>
         </div>
       </div>
 
-      <h3 class="reveal" style="text-align: center; margin-top: var(--space-3xl); margin-bottom: var(--space-xl);">Actuators</h3>
-      <div class="ref-grid reveal" style="--stagger: 1; grid-template-columns: repeat(5, 1fr);">
-        <div class="ref-card">
-          <div class="ref-card-name">digital_out</div>
-          <p>Digital output. High or low.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">relay</div>
-          <p>Relay control. Optional inverted logic.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">pwm</div>
-          <p>PWM output. 0-255 duty cycle.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">rgb_led</div>
-          <p>Built-in RGB LED. Packed 0xRRGGBB.</p>
-        </div>
-        <div class="ref-card">
-          <div class="ref-card-name">ssd1306</div>
-          <p>OLED text display. Template-driven, auto-refresh.</p>
-        </div>
+      <div style="text-align: center; margin-top: var(--space-xl);">
+        <a href="sensors.html" class="arch-link reveal" style="--stagger: 1">Full sensor &amp; display reference &rarr;</a>
       </div>
 
       <div class="terminal reveal" style="--stagger: 2; max-width: 620px; margin: var(--space-3xl) auto 0;">
