@@ -181,6 +181,7 @@ nav button{padding:0.4rem 0.6rem;font-size:0.8rem}
 <option value="i2c_ads1115">i2c_ads1115</option>
 <option value="i2c_generic">i2c_generic</option>
 <option value="ssd1306">ssd1306</option>
+<option value="sh1106">sh1106</option>
 </select>
 </div>
 </div>
@@ -198,7 +199,7 @@ nav button{padding:0.4rem 0.6rem;font-size:0.8rem}
 <div id="ad_i2c_wrap" class="hidden">
 <label>I2C Address (decimal)</label>
 <input type="number" id="ad_i2c_addr" placeholder="e.g. 118 for 0x76">
-<p class="hint">Common: BME280=0x76(118), BH1750=0x23(35), SHT31=0x44(68), ADS1115=0x48(72), SSD1306=0x3C(60)</p>
+<p class="hint">Common: BME280=0x76(118), BH1750=0x23(35), SHT31=0x44(68), ADS1115=0x48(72), SSD1306=0x3C(60), SH1106=0x3C(60)</p>
 </div>
 <div id="ad_chan_wrap" class="hidden">
 <label>Channel</label>
@@ -460,7 +461,7 @@ h+='</div>';
 }else if(d.kind==='pwm'){
 h+='<div class="dev-meta">pin '+d.pin+'</div>';
 h+='<div class="pwm-wrap"><input type="range" min="0" max="255" value="'+d.raw+'" oninput="pwmSlide(this,\''+d.name+'\')"><span class="pwm-val">'+d.raw+'</span></div>';
-}else if(d.kind==='ssd1306'){
+}else if(d.kind==='ssd1306'||d.kind==='sh1106'){
 if(d.extra)h+='<div class="dev-meta">I2C '+d.extra+'</div>';
 h+='<div class="dev-meta">'+d.value+'</div>';
 h+='<div style="margin-top:0.4rem"><input type="text" id="dt_'+d.name+'" placeholder="Template or !raw text" style="font-size:0.8rem;padding:0.3rem 0.5rem">';

@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sensors &amp; Displays - IOnode</title>
-  <meta name="description" content="IOnode supports BME280, BH1750, SHT31, ADS1115, NTC thermistors, LDRs, and SSD1306 OLED displays. Wire it, register it, read it. 20 device types built in.">
+  <meta name="description" content="IOnode supports BME280, BH1750, SHT31, ADS1115, NTC thermistors, LDRs, and SSD1306/SH1106 OLED displays. Wire it, register it, read it. 21 device types built in.">
   <meta name="author" content="Mario Schallner">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ionode.io/sensors.html">
   <meta property="og:title" content="Sensors &amp; Displays - IOnode">
-  <meta property="og:description" content="BME280, BH1750, SHT31, ADS1115, NTC, LDR, SSD1306 OLED - wire it, register it, read it. All over NATS.">
+  <meta property="og:description" content="BME280, BH1750, SHT31, ADS1115, NTC, LDR, SSD1306/SH1106 OLED - wire it, register it, read it. All over NATS.">
   <meta property="og:site_name" content="IOnode">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Sensors &amp; Displays - IOnode">
-  <meta name="twitter:description" content="BME280, BH1750, SHT31, ADS1115, NTC, LDR, SSD1306 OLED - wire it, register it, read it. All over NATS.">
+  <meta name="twitter:description" content="BME280, BH1750, SHT31, ADS1115, NTC, LDR, SSD1306/SH1106 OLED - wire it, register it, read it. All over NATS.">
   <!-- Theme -->
   <meta name="theme-color" content="#ff8c00">
   <link rel="canonical" href="https://ionode.io/sensors.html">
@@ -315,8 +315,8 @@
   <section>
     <div class="container">
       <div class="section-header reveal">
-        <h2>SSD1306 OLED <span class="accent">Display</span></h2>
-        <p>A live dashboard on a $3 screen. Template engine with auto-refresh. No code.</p>
+        <h2>SSD1306 / SH1106 OLED <span class="accent">Display</span></h2>
+        <p>A live dashboard on a $3 screen. Two controllers, same template engine with auto-refresh. No code.</p>
       </div>
 
       <div class="display-hero reveal" style="--stagger: 0">
@@ -380,12 +380,12 @@ SCL  ────────── SCL</pre>
         </div>
         <div class="wiring-box">
           <div style="color: var(--accent); font-weight: 600; margin-bottom: var(--space-sm);">Shared bus (sensor + display)</div>
-<pre style="margin: 0; white-space: pre;">ESP32       BME280    SSD1306
-─────       ──────    ───────
-3.3V ──┬─── VCC  ┬── VCC
-GND  ──┬─── GND  ┬── GND
-SDA  ──┬─── SDA  ┬── SDA
-SCL  ──┬─── SCL  ┬── SCL</pre>
+<pre style="margin: 0; white-space: pre;">ESP32       BME280    SSD1306/SH1106
+─────       ──────    ──────────────
+3.3V ────── VCC  ─── VCC
+GND  ────── GND  ─── GND
+SDA  ────── SDA  ─── SDA
+SCL  ────── SCL  ─── SCL</pre>
         </div>
       </div>
 
@@ -410,7 +410,7 @@ SCL  ──┬─── SCL  ┬── SCL</pre>
     <div class="container">
       <div class="section-header reveal">
         <h2>Weather station in <span class="accent">4 commands</span></h2>
-        <p>BME280 + SSD1306 OLED on the same I2C bus. Complete setup.</p>
+        <p>BME280 + OLED display on the same I2C bus. Complete setup.</p>
       </div>
       <div class="terminal reveal" style="--stagger: 0; max-width: 750px; margin: 0 auto;">
         <div class="terminal-header">
@@ -465,11 +465,11 @@ $ ionode device add ionode-01 display ssd1306 0 --i2c-addr 60 \
     </div>
   </section>
 
-  <!-- All 20 Device Types -->
+  <!-- All 21 Device Types -->
   <section>
     <div class="container">
       <div class="section-header reveal">
-        <h2>All <span class="accent">20</span> device types</h2>
+        <h2>All <span class="accent">21</span> device types</h2>
       </div>
 
       <h3 class="reveal" style="text-align: center; margin-bottom: var(--space-xl);">Sensors</h3>
@@ -492,12 +492,13 @@ $ ionode device add ionode-01 display ssd1306 0 --i2c-addr 60 \
       </div>
 
       <h3 class="reveal" style="text-align: center; margin-top: var(--space-3xl); margin-bottom: var(--space-xl);">Actuators</h3>
-      <div class="ref-grid reveal" style="--stagger: 1; grid-template-columns: repeat(5, 1fr); max-width: 960px;">
+      <div class="ref-grid reveal" style="--stagger: 1; grid-template-columns: repeat(6, 1fr); max-width: 960px;">
         <div class="ref-card"><div class="ref-card-name">digital_out</div><p>High or low</p></div>
         <div class="ref-card"><div class="ref-card-name">relay</div><p>With inversion</p></div>
         <div class="ref-card"><div class="ref-card-name">pwm</div><p>0–255 duty</p></div>
         <div class="ref-card"><div class="ref-card-name">rgb_led</div><p>0xRRGGBB</p></div>
         <div class="ref-card"><div class="ref-card-name">ssd1306</div><p>OLED text display</p></div>
+        <div class="ref-card"><div class="ref-card-name">sh1106</div><p>OLED text display</p></div>
       </div>
     </div>
   </section>
